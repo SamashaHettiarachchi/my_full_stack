@@ -8,8 +8,10 @@ import Footer from "./components/Footer/Footer";
 import Home from "./components/Home/home";
 import UserDetails from "./components/UserDetails/UserDetais";
 import AddUser from "./components/AddUser/AddUser";
+import EditUser from "./components/EditUser/EditUser";
 import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
+import Profile from "./components/Profile/Profile";
 
 function App() {
   return (
@@ -19,9 +21,12 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/users" element={<UserDetails />} />
+          <Route path="/userdetails" element={<UserDetails />} />
           <Route path="/add-user" element={<AddUser />} />
+          <Route path="/edit-user/:id" element={<EditUser />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/profile" element={<Profile />} />
         </Routes>
       </main>
       <Footer />
