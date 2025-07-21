@@ -67,21 +67,46 @@ const register = async (req, res) => {
 
 // POST /users/login
 const login = async (req, res) => {
-  const { email, password } = req.body;
+  const { email, emailOrUsername, password } = req.body;
 
   try {
-    // Find user by email
-    const user = await User.findOne({ email });
+    // Support both direct email and emailOrUsername fields
+    const loginField = email || emailOrUsername;
+
+    if (!loginField || !password) {
+      return res
+        .status(400)
+        .json({ message: "Email/username and password are required" });
+    }
+
+    // Find user by email or username
+    const user = await User.findOne({
+      $or: [{ email: loginField }, { username: loginField }],
+    });
 
     if (!user) {
-      return res.status(401).json({ message: "Invalid email or password" });
+      return res
+        .status(401)
+        .json({ message: "Invalid email/username or password" });
+    }
+
+    // Check if user has a password (some older users might not have one)
+    if (!user.password) {
+      return res
+        .status(401)
+        .json({
+          message:
+            "Account requires password setup. Please contact administrator.",
+        });
     }
 
     // Check password
     const isPasswordValid = await bcrypt.compare(password, user.password);
 
     if (!isPasswordValid) {
-      return res.status(401).json({ message: "Invalid email or password" });
+      return res
+        .status(401)
+        .json({ message: "Invalid email/username or password" });
     }
 
     // Generate JWT token
@@ -167,6 +192,15 @@ const addUser = async (req, res) => {
 // GET /users/:id
 const getById = async (req, res) => {
   const id = req.params.id;
+
+  // Validate ObjectId format before querying
+  if (!id.match(/^[0-9a-fA-F]{24}$/)) {
+    return res.status(400).json({
+      message: "Invalid user ID format",
+      error: "ID must be a valid 24-character hex string",
+    });
+  }
+
   try {
     const user = await User.findById(id).select("-password"); // Exclude password
     if (!user) {

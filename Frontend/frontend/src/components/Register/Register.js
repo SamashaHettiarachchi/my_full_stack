@@ -1,5 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faUser,
+  faEnvelope,
+  faLock,
+  faEye,
+  faEyeSlash,
+  faUserPlus,
+  faSpinner,
+  faCheck,
+  faExclamationTriangle,
+  faSignInAlt,
+  faShieldAlt,
+} from "@fortawesome/free-solid-svg-icons";
 import "./Register.css";
 
 const Register = () => {
@@ -228,14 +242,17 @@ const Register = () => {
 
           {showSuccess && (
             <div className="alert alert-success">
-              <span className="alert-icon">🎉</span>
+              <FontAwesomeIcon icon={faCheck} className="alert-icon" />
               <span>Account created successfully! Welcome to UserApp!</span>
             </div>
           )}
 
           {serverError && (
             <div className="alert alert-error">
-              <span className="alert-icon">❌</span>
+              <FontAwesomeIcon
+                icon={faExclamationTriangle}
+                className="alert-icon"
+              />
               <span>{serverError}</span>
             </div>
           )}
@@ -244,10 +261,11 @@ const Register = () => {
             <div className="form-row">
               <div className="form-group">
                 <label htmlFor="firstName" className="form-label">
-                  <span className="label-icon">👤</span>
+                  <FontAwesomeIcon icon={faUser} className="label-icon" />
                   First Name
                 </label>
                 <div className="input-wrapper">
+                  <FontAwesomeIcon icon={faUser} className="input-icon" />
                   <input
                     type="text"
                     id="firstName"
@@ -262,7 +280,10 @@ const Register = () => {
                 </div>
                 {errors.firstName && (
                   <span className="error-message">
-                    <span className="error-icon">⚠️</span>
+                    <FontAwesomeIcon
+                      icon={faExclamationTriangle}
+                      className="error-icon"
+                    />
                     {errors.firstName}
                   </span>
                 )}
@@ -270,10 +291,11 @@ const Register = () => {
 
               <div className="form-group">
                 <label htmlFor="lastName" className="form-label">
-                  <span className="label-icon">👤</span>
+                  <FontAwesomeIcon icon={faUser} className="label-icon" />
                   Last Name
                 </label>
                 <div className="input-wrapper">
+                  <FontAwesomeIcon icon={faUser} className="input-icon" />
                   <input
                     type="text"
                     id="lastName"
@@ -288,7 +310,10 @@ const Register = () => {
                 </div>
                 {errors.lastName && (
                   <span className="error-message">
-                    <span className="error-icon">⚠️</span>
+                    <FontAwesomeIcon
+                      icon={faExclamationTriangle}
+                      className="error-icon"
+                    />
                     {errors.lastName}
                   </span>
                 )}
@@ -297,10 +322,11 @@ const Register = () => {
 
             <div className="form-group">
               <label htmlFor="username" className="form-label">
-                <span className="label-icon">@</span>
+                <FontAwesomeIcon icon={faUser} className="label-icon" />
                 Username
               </label>
               <div className="input-wrapper">
+                <FontAwesomeIcon icon={faUser} className="input-icon" />
                 <input
                   type="text"
                   id="username"
@@ -315,7 +341,10 @@ const Register = () => {
               </div>
               {errors.username && (
                 <span className="error-message">
-                  <span className="error-icon">⚠️</span>
+                  <FontAwesomeIcon
+                    icon={faExclamationTriangle}
+                    className="error-icon"
+                  />
                   {errors.username}
                 </span>
               )}
@@ -323,10 +352,11 @@ const Register = () => {
 
             <div className="form-group">
               <label htmlFor="email" className="form-label">
-                <span className="label-icon">📧</span>
+                <FontAwesomeIcon icon={faEnvelope} className="label-icon" />
                 Email Address
               </label>
               <div className="input-wrapper">
+                <FontAwesomeIcon icon={faEnvelope} className="input-icon" />
                 <input
                   type="email"
                   id="email"
@@ -341,7 +371,10 @@ const Register = () => {
               </div>
               {errors.email && (
                 <span className="error-message">
-                  <span className="error-icon">⚠️</span>
+                  <FontAwesomeIcon
+                    icon={faExclamationTriangle}
+                    className="error-icon"
+                  />
                   {errors.email}
                 </span>
               )}
@@ -349,10 +382,11 @@ const Register = () => {
 
             <div className="form-group">
               <label htmlFor="password" className="form-label">
-                <span className="label-icon">🔒</span>
+                <FontAwesomeIcon icon={faLock} className="label-icon" />
                 Password
               </label>
               <div className="input-wrapper password-wrapper">
+                <FontAwesomeIcon icon={faLock} className="input-icon" />
                 <input
                   type={showPassword ? "text" : "password"}
                   id="password"
@@ -368,7 +402,7 @@ const Register = () => {
                   className="password-toggle"
                   onClick={() => togglePasswordVisibility("password")}
                 >
-                  <span>{showPassword ? "🙈" : "👁️"}</span>
+                  <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
                 </button>
                 <div className="input-focus-effect"></div>
               </div>
@@ -393,7 +427,10 @@ const Register = () => {
               )}
               {errors.password && (
                 <span className="error-message">
-                  <span className="error-icon">⚠️</span>
+                  <FontAwesomeIcon
+                    icon={faExclamationTriangle}
+                    className="error-icon"
+                  />
                   {errors.password}
                 </span>
               )}
@@ -401,10 +438,11 @@ const Register = () => {
 
             <div className="form-group">
               <label htmlFor="confirmPassword" className="form-label">
-                <span className="label-icon">🔐</span>
+                <FontAwesomeIcon icon={faShieldAlt} className="label-icon" />
                 Confirm Password
               </label>
               <div className="input-wrapper password-wrapper">
+                <FontAwesomeIcon icon={faShieldAlt} className="input-icon" />
                 <input
                   type={showConfirmPassword ? "text" : "password"}
                   id="confirmPassword"
@@ -422,13 +460,18 @@ const Register = () => {
                   className="password-toggle"
                   onClick={() => togglePasswordVisibility("confirm")}
                 >
-                  <span>{showConfirmPassword ? "🙈" : "👁️"}</span>
+                  <FontAwesomeIcon
+                    icon={showConfirmPassword ? faEyeSlash : faEye}
+                  />
                 </button>
                 <div className="input-focus-effect"></div>
               </div>
               {errors.confirmPassword && (
                 <span className="error-message">
-                  <span className="error-icon">⚠️</span>
+                  <FontAwesomeIcon
+                    icon={faExclamationTriangle}
+                    className="error-icon"
+                  />
                   {errors.confirmPassword}
                 </span>
               )}
@@ -441,12 +484,12 @@ const Register = () => {
             >
               {loading ? (
                 <>
-                  <span className="spinner"></span>
+                  <FontAwesomeIcon icon={faSpinner} spin className="btn-icon" />
                   <span>Creating Account...</span>
                 </>
               ) : (
                 <>
-                  <span className="btn-icon">🚀</span>
+                  <FontAwesomeIcon icon={faUserPlus} className="btn-icon" />
                   <span>Create Account</span>
                 </>
               )}
@@ -457,21 +500,16 @@ const Register = () => {
             <p className="login-text">
               Already have an account?
               <Link to="/login" className="login-link">
+                <FontAwesomeIcon icon={faSignInAlt} className="link-icon" />
                 Sign in here
               </Link>
             </p>
             <div className="divider">
-              <span className="divider-text">or continue with</span>
+              
             </div>
             <div className="social-buttons">
-              <button className="social-btn google-btn" type="button">
-                <span className="social-icon">🔵</span>
-                Google
-              </button>
-              <button className="social-btn github-btn" type="button">
-                <span className="social-icon">⚫</span>
-                GitHub
-              </button>
+              
+              
             </div>
           </div>
         </div>

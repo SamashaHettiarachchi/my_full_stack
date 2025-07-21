@@ -1,7 +1,7 @@
 /* Home Component - Modern Professional Design */
 .home-container {
   min-height: 100vh;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #667eea 0%, #7549a2 100%);
 }
 
 /* Hero Section */
@@ -127,7 +127,7 @@
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, #ff6b6b 0%, #feca57 100%);
+  background: linear-gradient(135deg, #fc8989 0%, #feca57 100%);
   color: white;
   box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
 }

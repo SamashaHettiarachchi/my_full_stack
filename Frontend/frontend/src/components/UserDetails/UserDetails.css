@@ -101,7 +101,7 @@
 
 /* Stats Section */
 .users-stats {
-  background: linear-gradient(135deg, #48dbfb 0%, #0abde3 100%);
+  background: linear-gradient(135deg, #48a7fb 0%, #1f95d1 100%);
   padding: 2rem;
   border-radius: 20px;
   margin-bottom: 3rem;
@@ -282,7 +282,7 @@
 }
 
 .edit-btn {
-  background: linear-gradient(135deg, #48dbfb 0%, #0abde3 100%);
+  background: linear-gradient(135deg, #48dbfb 0%, #1f95d1 100%);
   color: white;
   box-shadow: 0 5px 15px rgba(72, 219, 251, 0.3);
 }

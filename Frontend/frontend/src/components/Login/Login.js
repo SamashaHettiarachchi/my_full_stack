@@ -1,5 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faEnvelope,
+  faLock,
+  faEye,
+  faEyeSlash,
+  faSignInAlt,
+  faSpinner,
+  faCheck,
+  faExclamationTriangle,
+  faUser,
+  faUserPlus,
+} from "@fortawesome/free-solid-svg-icons";
 import "./Login.css";
 
 const Login = () => {
@@ -79,7 +92,7 @@ const Login = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          emailOrUsername: formData.email,
+          email: formData.email,
           password: formData.password,
         }),
       });
@@ -138,14 +151,17 @@ const Login = () => {
 
           {showSuccess && (
             <div className="alert alert-success">
-              <span className="alert-icon">✅</span>
+              <FontAwesomeIcon icon={faCheck} className="alert-icon" />
               <span>Login successful! Redirecting...</span>
             </div>
           )}
 
           {serverError && (
             <div className="alert alert-error">
-              <span className="alert-icon">❌</span>
+              <FontAwesomeIcon
+                icon={faExclamationTriangle}
+                className="alert-icon"
+              />
               <span>{serverError}</span>
             </div>
           )}
@@ -153,10 +169,11 @@ const Login = () => {
           <form onSubmit={handleSubmit} className="login-form">
             <div className="form-group">
               <label htmlFor="email" className="form-label">
-                <span className="label-icon">📧</span>
+                <FontAwesomeIcon icon={faEnvelope} className="label-icon" />
                 Email Address
               </label>
               <div className="input-wrapper">
+                <FontAwesomeIcon icon={faEnvelope} className="input-icon" />
                 <input
                   type="email"
                   id="email"
@@ -171,7 +188,10 @@ const Login = () => {
               </div>
               {errors.email && (
                 <span className="error-message">
-                  <span className="error-icon">⚠️</span>
+                  <FontAwesomeIcon
+                    icon={faExclamationTriangle}
+                    className="error-icon"
+                  />
                   {errors.email}
                 </span>
               )}
@@ -179,10 +199,11 @@ const Login = () => {
 
             <div className="form-group">
               <label htmlFor="password" className="form-label">
-                <span className="label-icon">🔒</span>
+                <FontAwesomeIcon icon={faLock} className="label-icon" />
                 Password
               </label>
               <div className="input-wrapper password-wrapper">
+                <FontAwesomeIcon icon={faLock} className="input-icon" />
                 <input
                   type={showPassword ? "text" : "password"}
                   id="password"
@@ -198,13 +219,16 @@ const Login = () => {
                   className="password-toggle"
                   onClick={togglePasswordVisibility}
                 >
-                  <span>{showPassword ? "🙈" : "👁️"}</span>
+                  <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
                 </button>
                 <div className="input-focus-effect"></div>
               </div>
               {errors.password && (
                 <span className="error-message">
-                  <span className="error-icon">⚠️</span>
+                  <FontAwesomeIcon
+                    icon={faExclamationTriangle}
+                    className="error-icon"
+                  />
                   {errors.password}
                 </span>
               )}
@@ -233,12 +257,12 @@ const Login = () => {
             >
               {loading ? (
                 <>
-                  <span className="spinner"></span>
+                  <FontAwesomeIcon icon={faSpinner} spin className="btn-icon" />
                   <span>Signing in...</span>
                 </>
               ) : (
                 <>
-                  <span className="btn-icon">🚀</span>
+                  <FontAwesomeIcon icon={faSignInAlt} className="btn-icon" />
                   <span>Sign In</span>
                 </>
               )}
@@ -249,21 +273,16 @@ const Login = () => {
             <p className="signup-text">
               Don't have an account?
               <Link to="/register" className="signup-link">
+                <FontAwesomeIcon icon={faUserPlus} className="link-icon" />
                 Create one here
               </Link>
             </p>
             <div className="divider">
-              <span className="divider-text">or continue with</span>
+             
             </div>
             <div className="social-buttons">
-              <button className="social-btn google-btn" type="button">
-                <span className="social-icon">🔵</span>
-                Google
-              </button>
-              <button className="social-btn github-btn" type="button">
-                <span className="social-icon">⚫</span>
-                GitHub
-              </button>
+              
+              
             </div>
           </div>
         </div>
