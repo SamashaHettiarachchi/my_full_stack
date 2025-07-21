@@ -1,5 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { 
+  faRocket,
+  faUsers,
+  faUserPlus,
+  faChartLine,
+  faShield,
+  faMobile,
+  faTachometerAlt,
+  faCheck,
+  faArrowRight,
+  faSignInAlt,
+  faCalendar
+} from '@fortawesome/free-solid-svg-icons';
 import "./Home.css";
 
 export default function Home() {
@@ -45,15 +59,15 @@ export default function Home() {
 
             {user ? (
               <div className="welcome-back">
-                <h2>Welcome back, {user.firstName}! 👋</h2>
+                <h2>Welcome back, {user.firstName}! <FontAwesomeIcon icon={faRocket} /></h2>
                 <p>Ready to manage your users?</p>
                 <div className="action-buttons">
                   <Link to="/userdetails" className="btn btn-primary">
-                    <i className="icon">👥</i>
+                    <FontAwesomeIcon icon={faUsers} className="icon" />
                     View All Users
                   </Link>
                   <Link to="/add-user" className="btn btn-secondary">
-                    <i className="icon">➕</i>
+                    <FontAwesomeIcon icon={faUserPlus} className="icon" />
                     Add New User
                   </Link>
                 </div>
@@ -65,11 +79,11 @@ export default function Home() {
                 </p>
                 <div className="action-buttons">
                   <Link to="/register" className="btn btn-primary">
-                    <i className="icon">🚀</i>
+                    <FontAwesomeIcon icon={faRocket} className="icon" />
                     Get Started Free
                   </Link>
                   <Link to="/login" className="btn btn-outline">
-                    <i className="icon">🔐</i>
+                    <FontAwesomeIcon icon={faSignInAlt} className="icon" />
                     Sign In
                   </Link>
                 </div>
@@ -80,15 +94,15 @@ export default function Home() {
           <div className="hero-visual">
             <div className="floating-cards">
               <div className="floating-card card-1">
-                <div className="card-icon">👤</div>
+                <FontAwesomeIcon icon={faUsers} className="card-icon" />
                 <div className="card-text">User Profiles</div>
               </div>
               <div className="floating-card card-2">
-                <div className="card-icon">🔒</div>
+                <FontAwesomeIcon icon={faShield} className="card-icon" />
                 <div className="card-text">Secure Auth</div>
               </div>
               <div className="floating-card card-3">
-                <div className="card-icon">�</div>
+                <FontAwesomeIcon icon={faChartLine} className="card-icon" />
                 <div className="card-text">Analytics</div>
               </div>
             </div>
@@ -100,17 +114,17 @@ export default function Home() {
       <section className="stats-section">
         <div className="stats-container">
           <div className="stat-card">
-            <div className="stat-icon">👥</div>
+            <FontAwesomeIcon icon={faUsers} className="stat-icon" />
             <div className="stat-number">{stats.totalUsers}+</div>
             <div className="stat-label">Total Users</div>
           </div>
           <div className="stat-card">
-            <div className="stat-icon">✨</div>
+            <FontAwesomeIcon icon={faCalendar} className="stat-icon" />
             <div className="stat-number">{stats.newUsersToday}</div>
             <div className="stat-label">New Today</div>
           </div>
           <div className="stat-card">
-            <div className="stat-icon">🟢</div>
+            <FontAwesomeIcon icon={faCheck} className="stat-icon" />
             <div className="stat-number">{stats.activeUsers}</div>
             <div className="stat-label">Active Users</div>
           </div>
@@ -123,47 +137,47 @@ export default function Home() {
           <h2 className="section-title">Powerful Features</h2>
           <div className="features-grid">
             <div className="feature-card">
-              <div className="feature-icon">🎯</div>
+              <FontAwesomeIcon icon={faUsers} className="feature-icon" />
               <h3>Smart User Management</h3>
               <p>
                 Efficiently manage user profiles with advanced search,
                 filtering, and bulk operations
               </p>
               <Link to="/userdetails" className="feature-link">
-                Explore Users →
+                Explore Users <FontAwesomeIcon icon={faArrowRight} />
               </Link>
             </div>
 
             <div className="feature-card">
-              <div className="feature-icon">🔐</div>
+              <FontAwesomeIcon icon={faShield} className="feature-icon" />
               <h3>Enterprise Security</h3>
               <p>
                 Bank-level security with JWT authentication, password
                 encryption, and session management
               </p>
               <Link to="/login" className="feature-link">
-                Secure Login →
+                Secure Login <FontAwesomeIcon icon={faArrowRight} />
               </Link>
             </div>
 
             <div className="feature-card">
-              <div className="feature-icon">📱</div>
+              <FontAwesomeIcon icon={faMobile} className="feature-icon" />
               <h3>Responsive Design</h3>
               <p>
                 Beautiful, mobile-first design that works seamlessly across all
                 devices and screen sizes
               </p>
-              <span className="feature-link">Try it out →</span>
+              <span className="feature-link">Try it out <FontAwesomeIcon icon={faArrowRight} /></span>
             </div>
 
             <div className="feature-card">
-              <div className="feature-icon">⚡</div>
+              <FontAwesomeIcon icon={faTachometerAlt} className="feature-icon" />
               <h3>Lightning Fast</h3>
               <p>
                 Built with modern React and optimized for performance with
                 instant loading and smooth interactions
               </p>
-              <span className="feature-link">Experience Speed →</span>
+              <span className="feature-link">Experience Speed <FontAwesomeIcon icon={faArrowRight} /></span>
             </div>
           </div>
         </div>

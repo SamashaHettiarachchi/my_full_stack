@@ -1,0 +1,244 @@
+/* Enhanced Font Awesome Icon Styling for the entire project */
+
+/* General icon styling */
+.fa-icon, .fas, .fab, .far {
+  transition: all 0.3s ease;
+}
+
+/* Navigation icons */
+.nav-icon {
+  margin-right: 0.5rem;
+  font-size: 1rem;
+  color: inherit;
+}
+
+.logo-icon {
+  margin-right: 0.5rem;
+  font-size: 1.2rem;
+  color: #667eea;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-5px); }
+}
+
+/* Button icons */
+.btn-icon {
+  margin-right: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.btn:hover .btn-icon {
+  transform: scale(1.1);
+}
+
+/* Loading spinner */
+.loading-icon {
+  margin-right: 0.5rem;
+  color: #667eea;
+  font-size: 1.2rem;
+}
+
+/* Error icons */
+.error-icon {
+  color: #e74c3c;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+/* Header icons */
+.header-icon {
+  margin-right: 0.5rem;
+  color: #667eea;
+  font-size: 1.3rem;
+}
+
+/* Stats icons */
+.stats-icon {
+  margin-right: 0.5rem;
+  color: #667eea;
+  font-size: 1.1rem;
+}
+
+/* Detail icons in user cards */
+.detail-icon {
+  margin-right: 0.5rem;
+  color: #667eea;
+  font-size: 0.9rem;
+  width: 1rem;
+  text-align: center;
+}
+
+.user-icon {
+  margin-right: 0.5rem;
+  color: #667eea;
+  font-size: 1.1rem;
+}
+
+/* Form label icons */
+.label-icon {
+  margin-right: 0.5rem;
+  color: #667eea;
+  font-size: 1rem;
+  width: 1.2rem;
+  text-align: center;
+}
+
+/* Alert icons */
+.alert-icon {
+  margin-right: 0.5rem;
+  font-size: 1rem;
+}
+
+.alert-success .alert-icon {
+  color: #27ae60;
+}
+
+.alert-error .alert-icon {
+  color: #e74c3c;
+}
+
+/* Feature icons */
+.feature-icon {
+  font-size: 2.5rem;
+  color: #667eea;
+  margin-bottom: 1rem;
+  transition: all 0.3s ease;
+}
+
+.feature-card:hover .feature-icon {
+  transform: scale(1.1) rotate(5deg);
+  color: #764ba2;
+}
+
+/* Stat card icons */
+.stat-icon {
+  font-size: 2rem;
+  color: #667eea;
+  margin-bottom: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.stat-card:hover .stat-icon {
+  transform: scale(1.15);
+  color: #764ba2;
+}
+
+/* Card icons in hero section */
+.card-icon {
+  font-size: 1.5rem;
+  color: #667eea;
+  margin-bottom: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.floating-card:hover .card-icon {
+  transform: scale(1.2);
+  color: #764ba2;
+}
+
+/* Dropdown icons */
+.dropdown-icon {
+  margin-right: 0.5rem;
+  color: #667eea;
+  font-size: 0.9rem;
+  width: 1rem;
+  text-align: center;
+}
+
+/* Avatar and dropdown arrow */
+.avatar-icon {
+  margin-right: 0.5rem;
+  color: #667eea;
+  font-size: 1.1rem;
+}
+
+.dropdown-arrow {
+  margin-left: 0.5rem;
+  color: #667eea;
+  font-size: 0.8rem;
+  transition: all 0.3s ease;
+}
+
+.user-avatar:hover .dropdown-arrow {
+  transform: rotate(180deg);
+}
+
+/* Action button icons */
+.edit-btn .fa-edit {
+  margin-right: 0.3rem;
+  color: #f39c12;
+}
+
+.delete-btn .fa-trash {
+  margin-right: 0.3rem;
+  color: #e74c3c;
+}
+
+/* No users icon */
+.no-users-icon {
+  font-size: 3rem;
+  color: #bdc3c7;
+  margin-bottom: 1rem;
+}
+
+/* Title icons */
+.title-icon {
+  margin-right: 0.5rem;
+  color: #667eea;
+  font-size: 1.1rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .feature-icon {
+    font-size: 2rem;
+  }
+  
+  .stat-icon {
+    font-size: 1.5rem;
+  }
+  
+  .card-icon {
+    font-size: 1.2rem;
+  }
+  
+  .no-users-icon {
+    font-size: 2.5rem;
+  }
+}
+
+/* Hover effects for interactive icons */
+.btn:hover .btn-icon,
+.nav-link:hover .nav-icon,
+.footer-link:hover .link-icon {
+  transform: scale(1.1);
+}
+
+/* Animation for spinner */
+.fa-spinner {
+  animation: fa-spin 1s infinite linear;
+}
+
+/* Color variations for different contexts */
+.success-icon {
+  color: #27ae60 !important;
+}
+
+.warning-icon {
+  color: #f39c12 !important;
+}
+
+.danger-icon {
+  color: #e74c3c !important;
+}
+
+.info-icon {
+  color: #3498db !important;
+}
+
+.primary-icon {
+  color: #667eea !important;
+}

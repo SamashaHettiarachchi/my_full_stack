@@ -1,6 +1,20 @@
 import React, { useState, useEffect } from "react";
 import "./Nav.css";
 import { Link, useNavigate, useLocation } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { 
+  faBars, 
+  faTimes, 
+  faUser, 
+  faChartLine, 
+  faUsers, 
+  faUserPlus, 
+  faHome, 
+  faRocket, 
+  faCaretDown, 
+  faSignOutAlt,
+  faSignInAlt 
+} from '@fortawesome/free-solid-svg-icons';
 
 function Nav() {
   const [user, setUser] = useState(null);
@@ -50,7 +64,7 @@ function Nav() {
     <nav className="navbar">
       <div className="nav-container">
         <Link to="/" className="nav-logo" onClick={closeMobileMenu}>
-          <span className="logo-icon">🚀</span>
+          <FontAwesomeIcon icon={faRocket} className="logo-icon" />
           <span className="logo-text">UserApp</span>
         </Link>
 
@@ -61,7 +75,7 @@ function Nav() {
               className={`nav-link ${isActiveLink("/") ? "active" : ""}`}
               onClick={closeMobileMenu}
             >
-              <span className="nav-icon">🏠</span>
+              <FontAwesomeIcon icon={faHome} className="nav-icon" />
               <span>Home</span>
             </Link>
 
@@ -72,7 +86,7 @@ function Nav() {
               }`}
               onClick={closeMobileMenu}
             >
-              <span className="nav-icon">👥</span>
+              <FontAwesomeIcon icon={faUsers} className="nav-icon" />
               <span>Users</span>
             </Link>
 
@@ -83,8 +97,19 @@ function Nav() {
               }`}
               onClick={closeMobileMenu}
             >
-              <span className="nav-icon">➕</span>
+              <FontAwesomeIcon icon={faUserPlus} className="nav-icon" />
               <span>Add User</span>
+            </Link>
+
+            <Link
+              to="/analytics"
+              className={`nav-link ${
+                isActiveLink("/analytics") ? "active" : ""
+              }`}
+              onClick={closeMobileMenu}
+            >
+              <FontAwesomeIcon icon={faChartLine} className="nav-icon" />
+              <span>Analytics</span>
             </Link>
           </div>
 
@@ -95,11 +120,11 @@ function Nav() {
                   className="user-avatar"
                   onClick={() => setShowUserDropdown(!showUserDropdown)}
                 >
-                  <span className="avatar-icon">👤</span>
+                  <FontAwesomeIcon icon={faUser} className="avatar-icon" />
                   <span className="user-name">
                     {user.firstName || user.username}
                   </span>
-                  <span className="dropdown-arrow">▼</span>
+                  <FontAwesomeIcon icon={faCaretDown} className="dropdown-arrow" />
                 </button>
 
                 {showUserDropdown && (
@@ -120,14 +145,22 @@ function Nav() {
                       className="dropdown-item"
                       onClick={() => setShowUserDropdown(false)}
                     >
-                      <span className="dropdown-icon">⚙️</span>
+                      <FontAwesomeIcon icon={faUser} className="dropdown-icon" />
                       Profile Settings
+                    </Link>
+                    <Link
+                      to="/analytics"
+                      className="dropdown-item"
+                      onClick={() => setShowUserDropdown(false)}
+                    >
+                      <FontAwesomeIcon icon={faChartLine} className="dropdown-icon" />
+                      User Analytics
                     </Link>
                     <button
                       className="dropdown-item logout-btn"
                       onClick={handleLogout}
                     >
-                      <span className="dropdown-icon">🚪</span>
+                      <FontAwesomeIcon icon={faSignOutAlt} className="dropdown-icon" />
                       Logout
                     </button>
                   </div>
@@ -142,7 +175,7 @@ function Nav() {
                   }`}
                   onClick={closeMobileMenu}
                 >
-                  <span className="btn-icon">🔑</span>
+                  <FontAwesomeIcon icon={faSignInAlt} className="btn-icon" />
                   Login
                 </Link>
                 <Link
@@ -152,7 +185,7 @@ function Nav() {
                   }`}
                   onClick={closeMobileMenu}
                 >
-                  <span className="btn-icon">📝</span>
+                  <FontAwesomeIcon icon={faUserPlus} className="btn-icon" />
                   Register
                 </Link>
               </div>
@@ -164,9 +197,7 @@ function Nav() {
           className={`mobile-menu-toggle ${isMobileMenuOpen ? "active" : ""}`}
           onClick={toggleMobileMenu}
         >
-          <span className="hamburger-line"></span>
-          <span className="hamburger-line"></span>
-          <span className="hamburger-line"></span>
+          <FontAwesomeIcon icon={isMobileMenuOpen ? faTimes : faBars} />
         </button>
       </div>
     </nav>

@@ -1,5 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { 
+  faUsers, 
+  faEdit, 
+  faTrash, 
+  faPlus, 
+  faSearch,
+  faUser,
+  faEnvelope,
+  faCalendar,
+  faLocationDot,
+  faTriangleExclamation,
+  faSpinner
+} from '@fortawesome/free-solid-svg-icons';
 import "./UserDetails.css";
 
 function UserDetails() {
@@ -76,7 +90,10 @@ function UserDetails() {
   if (loading)
     return (
       <div className="user-details-container">
-        <div className="loading">Loading users...</div>
+        <div className="loading">
+          <FontAwesomeIcon icon={faSpinner} spin className="loading-icon" />
+          <span>Loading users...</span>
+        </div>
       </div>
     );
 
@@ -84,9 +101,11 @@ function UserDetails() {
     return (
       <div className="user-details-container">
         <div className="error">
+          <FontAwesomeIcon icon={faTriangleExclamation} className="error-icon" />
           <h3>Error:</h3>
           <p>{error}</p>
           <button onClick={fetchUsers} className="retry-btn">
+            <FontAwesomeIcon icon={faSpinner} />
             Try Again
           </button>
         </div>
@@ -96,24 +115,31 @@ function UserDetails() {
   return (
     <div className="user-details-container">
       <div className="header-section">
-        <h2>User Details</h2>
+        <h2>
+          <FontAwesomeIcon icon={faUsers} className="header-icon" />
+          User Details
+        </h2>
         <button onClick={fetchUsers} className="refresh-btn">
-          🔄 Refresh
+          <FontAwesomeIcon icon={faSpinner} />
+          Refresh
         </button>
       </div>
 
       {users.length === 0 ? (
         <div className="no-users">
+          <FontAwesomeIcon icon={faUser} className="no-users-icon" />
           <h3>No users found</h3>
           <p>Add some users to see them here!</p>
           <a href="/add-user" className="add-user-link">
-            ➕ Add Your First User
+            <FontAwesomeIcon icon={faPlus} />
+            Add Your First User
           </a>
         </div>
       ) : (
         <>
           <div className="users-stats">
             <p>
+              <FontAwesomeIcon icon={faUsers} className="stats-icon" />
               Total Users: <strong>{users.length}</strong>
             </p>
           </div>
@@ -121,15 +147,21 @@ function UserDetails() {
             {users.map((user) => (
               <div key={user._id} className="user-card">
                 <div className="user-info">
-                  <h3>{user.name}</h3>
+                  <h3>
+                    <FontAwesomeIcon icon={faUser} className="user-icon" />
+                    {user.name}
+                  </h3>
                   <p>
-                    <strong>📧 Email:</strong> {user.email}
+                    <FontAwesomeIcon icon={faEnvelope} className="detail-icon" />
+                    <strong>Email:</strong> {user.email}
                   </p>
                   <p>
-                    <strong>🎂 Age:</strong> {user.age}
+                    <FontAwesomeIcon icon={faCalendar} className="detail-icon" />
+                    <strong>Age:</strong> {user.age}
                   </p>
                   <p>
-                    <strong>🏠 Address:</strong> {user.address}
+                    <FontAwesomeIcon icon={faLocationDot} className="detail-icon" />
+                    <strong>Address:</strong> {user.address}
                   </p>
                   {user.profilePicture && (
                     <div className="profile-picture-container">
@@ -152,13 +184,15 @@ function UserDetails() {
                     className="edit-btn"
                     onClick={() => editUser(user._id)}
                   >
-                    ✏️ Edit
+                    <FontAwesomeIcon icon={faEdit} />
+                    Edit
                   </button>
                   <button
                     className="delete-btn"
                     onClick={() => deleteUser(user._id)}
                   >
-                    🗑️ Delete
+                    <FontAwesomeIcon icon={faTrash} />
+                    Delete
                   </button>
                 </div>
               </div>

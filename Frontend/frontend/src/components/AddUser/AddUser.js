@@ -1,5 +1,20 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { 
+  faUserPlus, 
+  faUser, 
+  faEnvelope, 
+  faCalendar, 
+  faMapMarkerAlt, 
+  faImage,
+  faSave,
+  faArrowLeft,
+  faSpinner,
+  faCheck,
+  faTriangleExclamation,
+  faTimes
+} from '@fortawesome/free-solid-svg-icons';
 import "./AddUser.css";
 
 function AddUser() {
@@ -135,7 +150,7 @@ function AddUser() {
         <div className="form-header">
           <div className="header-content">
             <h2 className="page-title">
-              <span className="title-icon">👤</span>
+              <FontAwesomeIcon icon={faUserPlus} className="title-icon" />
               Add New User
             </h2>
             <p className="page-subtitle">
@@ -147,21 +162,21 @@ function AddUser() {
             className="back-btn"
             onClick={() => navigate("/userdetails")}
           >
-            <span className="btn-icon">←</span>
+            <FontAwesomeIcon icon={faArrowLeft} className="btn-icon" />
             Back to Users
           </button>
         </div>
 
         {showSuccess && (
           <div className="alert alert-success">
-            <span className="alert-icon">✅</span>
+            <FontAwesomeIcon icon={faCheck} className="alert-icon" />
             <span>User added successfully!</span>
           </div>
         )}
 
         {errors.submit && (
           <div className="alert alert-error">
-            <span className="alert-icon">❌</span>
+            <FontAwesomeIcon icon={faTimes} className="alert-icon" />
             <span>{errors.submit}</span>
           </div>
         )}
@@ -170,7 +185,7 @@ function AddUser() {
           <div className="form-row">
             <div className="form-group">
               <label htmlFor="name" className="form-label">
-                <span className="label-icon">📝</span>
+                <FontAwesomeIcon icon={faUser} className="label-icon" />
                 Full Name *
               </label>
               <input
@@ -183,13 +198,16 @@ function AddUser() {
                 placeholder="Enter full name"
               />
               {errors.name && (
-                <span className="error-message">{errors.name}</span>
+                <span className="error-message">
+                  <FontAwesomeIcon icon={faTriangleExclamation} />
+                  {errors.name}
+                </span>
               )}
             </div>
 
             <div className="form-group">
               <label htmlFor="email" className="form-label">
-                <span className="label-icon">📧</span>
+                <FontAwesomeIcon icon={faEnvelope} className="label-icon" />
                 Email Address *
               </label>
               <input
@@ -202,7 +220,10 @@ function AddUser() {
                 placeholder="Enter email address"
               />
               {errors.email && (
-                <span className="error-message">{errors.email}</span>
+                <span className="error-message">
+                  <FontAwesomeIcon icon={faTriangleExclamation} />
+                  {errors.email}
+                </span>
               )}
             </div>
           </div>
@@ -210,7 +231,7 @@ function AddUser() {
           <div className="form-row">
             <div className="form-group">
               <label htmlFor="age" className="form-label">
-                <span className="label-icon">🎂</span>
+                <FontAwesomeIcon icon={faCalendar} className="label-icon" />
                 Age *
               </label>
               <input
@@ -225,13 +246,16 @@ function AddUser() {
                 max="120"
               />
               {errors.age && (
-                <span className="error-message">{errors.age}</span>
+                <span className="error-message">
+                  <FontAwesomeIcon icon={faTriangleExclamation} />
+                  {errors.age}
+                </span>
               )}
             </div>
 
             <div className="form-group">
               <label htmlFor="profilePicture" className="form-label">
-                <span className="label-icon">🖼️</span>
+                <FontAwesomeIcon icon={faImage} className="label-icon" />
                 Profile Picture URL
               </label>
               <input
@@ -244,14 +268,17 @@ function AddUser() {
                 placeholder="https://example.com/image.jpg"
               />
               {errors.profilePicture && (
-                <span className="error-message">{errors.profilePicture}</span>
+                <span className="error-message">
+                  <FontAwesomeIcon icon={faTriangleExclamation} />
+                  {errors.profilePicture}
+                </span>
               )}
             </div>
           </div>
 
           <div className="form-group full-width">
             <label htmlFor="address" className="form-label">
-              <span className="label-icon">📍</span>
+              <FontAwesomeIcon icon={faMapMarkerAlt} className="label-icon" />
               Address *
             </label>
             <textarea
@@ -264,7 +291,10 @@ function AddUser() {
               rows="4"
             />
             {errors.address && (
-              <span className="error-message">{errors.address}</span>
+              <span className="error-message">
+                <FontAwesomeIcon icon={faTriangleExclamation} />
+                {errors.address}
+              </span>
             )}
           </div>
 
@@ -275,7 +305,7 @@ function AddUser() {
               onClick={handleReset}
               disabled={isLoading}
             >
-              <span className="btn-icon">🔄</span>
+              <FontAwesomeIcon icon={faTimes} className="btn-icon" />
               Reset Form
             </button>
             <button
@@ -285,12 +315,12 @@ function AddUser() {
             >
               {isLoading ? (
                 <>
-                  <span className="spinner"></span>
+                  <FontAwesomeIcon icon={faSpinner} spin className="spinner" />
                   Creating...
                 </>
               ) : (
                 <>
-                  <span className="btn-icon">➕</span>
+                  <FontAwesomeIcon icon={faSave} className="btn-icon" />
                   Add User
                 </>
               )}

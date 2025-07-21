@@ -102,14 +102,15 @@
 .social-icons {
   display: flex;
   gap: 1rem;
+  flex-wrap: wrap;
 }
 
 .social-link {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
+  width: 45px;
+  height: 45px;
   background: rgba(255, 255, 255, 0.1);
   border-radius: 50%;
   color: white;
@@ -117,12 +118,61 @@
   transition: all 0.3s ease;
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.social-link::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.social-link:hover::before {
+  left: 100%;
 }
 
 .social-link:hover {
   background: rgba(255, 255, 255, 0.2);
-  transform: translateY(-3px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  transform: translateY(-3px) scale(1.1);
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* Specific hover colors for each platform */
+.social-link:nth-child(1):hover { /* Facebook */
+  background: #3b5998;
+  box-shadow: 0 15px 25px rgba(59, 89, 152, 0.4);
+}
+
+.social-link:nth-child(2):hover { /* Twitter */
+  background: #1da1f2;
+  box-shadow: 0 15px 25px rgba(29, 161, 242, 0.4);
+}
+
+.social-link:nth-child(3):hover { /* LinkedIn */
+  background: #0077b5;
+  box-shadow: 0 15px 25px rgba(0, 119, 181, 0.4);
+}
+
+.social-link:nth-child(4):hover { /* Instagram */
+  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  box-shadow: 0 15px 25px rgba(188, 24, 136, 0.4);
+}
+
+.social-link:nth-child(5):hover { /* GitHub */
+  background: #333;
+  box-shadow: 0 15px 25px rgba(51, 51, 51, 0.4);
+}
+
+.social-link:nth-child(6):hover { /* YouTube */
+  background: #ff0000;
+  box-shadow: 0 15px 25px rgba(255, 0, 0, 0.4);
 }
 
 .section-title {
