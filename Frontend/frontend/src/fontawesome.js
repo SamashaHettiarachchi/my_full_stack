@@ -1,16 +1,16 @@
 // FontAwesome configuration
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { 
-  faFacebookF, 
-  faTwitter, 
-  faLinkedinIn, 
+import { library } from "@fortawesome/fontawesome-svg-core";
+import {
+  faFacebookF,
+  faTwitter,
+  faLinkedinIn,
   faInstagram,
   faGithub,
-  faYoutube 
-} from '@fortawesome/free-brands-svg-icons';
-import { 
-  faEnvelope, 
-  faPhone, 
+  faYoutube,
+} from "@fortawesome/free-brands-svg-icons";
+import {
+  faEnvelope,
+  faPhone,
   faMapMarkerAlt,
   faRocket,
   faUsers,
@@ -33,22 +33,22 @@ import {
   faSearch,
   faSort,
   faSortUp,
-  faSortDown
-} from '@fortawesome/free-solid-svg-icons';
+  faSortDown,
+} from "@fortawesome/free-solid-svg-icons";
 
 // Add icons to the library
 library.add(
   // Brand icons
-  faFacebookF, 
-  faTwitter, 
-  faLinkedinIn, 
+  faFacebookF,
+  faTwitter,
+  faLinkedinIn,
   faInstagram,
   faGithub,
   faYoutube,
-  
+
   // Solid icons
-  faEnvelope, 
-  faPhone, 
+  faEnvelope,
+  faPhone,
   faMapMarkerAlt,
   faRocket,
   faUsers,

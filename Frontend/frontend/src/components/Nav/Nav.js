@@ -1,20 +1,20 @@
 import React, { useState, useEffect } from "react";
 import "./Nav.css";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { 
-  faBars, 
-  faTimes, 
-  faUser, 
-  faChartLine, 
-  faUsers, 
-  faUserPlus, 
-  faHome, 
-  faRocket, 
-  faCaretDown, 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faBars,
+  faTimes,
+  faUser,
+  faChartLine,
+  faUsers,
+  faUserPlus,
+  faHome,
+  faRocket,
+  faCaretDown,
   faSignOutAlt,
-  faSignInAlt 
-} from '@fortawesome/free-solid-svg-icons';
+  faSignInAlt,
+} from "@fortawesome/free-solid-svg-icons";
 
 function Nav() {
   const [user, setUser] = useState(null);
@@ -124,7 +124,10 @@ function Nav() {
                   <span className="user-name">
                     {user.firstName || user.username}
                   </span>
-                  <FontAwesomeIcon icon={faCaretDown} className="dropdown-arrow" />
+                  <FontAwesomeIcon
+                    icon={faCaretDown}
+                    className="dropdown-arrow"
+                  />
                 </button>
 
                 {showUserDropdown && (
@@ -145,7 +148,10 @@ function Nav() {
                       className="dropdown-item"
                       onClick={() => setShowUserDropdown(false)}
                     >
-                      <FontAwesomeIcon icon={faUser} className="dropdown-icon" />
+                      <FontAwesomeIcon
+                        icon={faUser}
+                        className="dropdown-icon"
+                      />
                       Profile Settings
                     </Link>
                     <Link
@@ -153,14 +159,20 @@ function Nav() {
                       className="dropdown-item"
                       onClick={() => setShowUserDropdown(false)}
                     >
-                      <FontAwesomeIcon icon={faChartLine} className="dropdown-icon" />
+                      <FontAwesomeIcon
+                        icon={faChartLine}
+                        className="dropdown-icon"
+                      />
                       User Analytics
                     </Link>
                     <button
                       className="dropdown-item logout-btn"
                       onClick={handleLogout}
                     >
-                      <FontAwesomeIcon icon={faSignOutAlt} className="dropdown-icon" />
+                      <FontAwesomeIcon
+                        icon={faSignOutAlt}
+                        className="dropdown-icon"
+                      />
                       Logout
                     </button>
                   </div>

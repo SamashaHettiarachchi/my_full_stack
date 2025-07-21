@@ -1,7 +1,10 @@
 /* Enhanced Font Awesome Icon Styling for the entire project */
 
 /* General icon styling */
-.fa-icon, .fas, .fab, .far {
+.fa-icon,
+.fas,
+.fab,
+.far {
   transition: all 0.3s ease;
 }
 
@@ -20,8 +23,13 @@
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-5px); }
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
 }
 
 /* Button icons */
@@ -196,15 +204,15 @@
   .feature-icon {
     font-size: 2rem;
   }
-  
+
   .stat-icon {
     font-size: 1.5rem;
   }
-  
+
   .card-icon {
     font-size: 1.2rem;
   }
-  
+
   .no-users-icon {
     font-size: 2.5rem;
   }

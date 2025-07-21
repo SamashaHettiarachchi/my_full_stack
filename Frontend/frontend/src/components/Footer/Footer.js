@@ -1,17 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { 
-  faFacebookF, 
-  faTwitter, 
-  faLinkedinIn, 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faFacebookF,
+  faTwitter,
+  faLinkedinIn,
   faInstagram,
   faGithub,
-  faYoutube 
-} from '@fortawesome/free-brands-svg-icons';
-import { 
-  faEnvelope, 
-  faPhone, 
+  faYoutube,
+} from "@fortawesome/free-brands-svg-icons";
+import {
+  faEnvelope,
+  faPhone,
   faMapMarkerAlt,
   faRocket,
   faUsers,
@@ -19,8 +19,8 @@ import {
   faSignInAlt,
   faShield,
   faMobile,
-  faTachometerAlt
-} from '@fortawesome/free-solid-svg-icons';
+  faTachometerAlt,
+} from "@fortawesome/free-solid-svg-icons";
 import "./Footer.css";
 
 function Footer() {
@@ -42,22 +42,58 @@ function Footer() {
             features. Streamline your workflow today.
           </p>
           <div className="social-icons">
-            <a href="https://facebook.com" className="social-link" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
+            <a
+              href="https://facebook.com"
+              className="social-link"
+              aria-label="Facebook"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <FontAwesomeIcon icon={faFacebookF} />
             </a>
-            <a href="https://twitter.com" className="social-link" aria-label="Twitter" target="_blank" rel="noopener noreferrer">
+            <a
+              href="https://twitter.com"
+              className="social-link"
+              aria-label="Twitter"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <FontAwesomeIcon icon={faTwitter} />
             </a>
-            <a href="https://linkedin.com" className="social-link" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+            <a
+              href="https://linkedin.com"
+              className="social-link"
+              aria-label="LinkedIn"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <FontAwesomeIcon icon={faLinkedinIn} />
             </a>
-            <a href="https://instagram.com" className="social-link" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+            <a
+              href="https://instagram.com"
+              className="social-link"
+              aria-label="Instagram"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <FontAwesomeIcon icon={faInstagram} />
             </a>
-            <a href="https://github.com" className="social-link" aria-label="GitHub" target="_blank" rel="noopener noreferrer">
+            <a
+              href="https://github.com"
+              className="social-link"
+              aria-label="GitHub"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <FontAwesomeIcon icon={faGithub} />
             </a>
-            <a href="https://youtube.com" className="social-link" aria-label="YouTube" target="_blank" rel="noopener noreferrer">
+            <a
+              href="https://youtube.com"
+              className="social-link"
+              aria-label="YouTube"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <FontAwesomeIcon icon={faYoutube} />
             </a>
           </div>

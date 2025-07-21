@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
   faRocket,
   faUsers,
   faUserPlus,
@@ -12,8 +12,8 @@ import {
   faCheck,
   faArrowRight,
   faSignInAlt,
-  faCalendar
-} from '@fortawesome/free-solid-svg-icons';
+  faCalendar,
+} from "@fortawesome/free-solid-svg-icons";
 import "./Home.css";
 
 export default function Home() {
@@ -59,7 +59,10 @@ export default function Home() {
 
             {user ? (
               <div className="welcome-back">
-                <h2>Welcome back, {user.firstName}! <FontAwesomeIcon icon={faRocket} /></h2>
+                <h2>
+                  Welcome back, {user.firstName}!{" "}
+                  <FontAwesomeIcon icon={faRocket} />
+                </h2>
                 <p>Ready to manage your users?</p>
                 <div className="action-buttons">
                   <Link to="/userdetails" className="btn btn-primary">
@@ -167,17 +170,24 @@ export default function Home() {
                 Beautiful, mobile-first design that works seamlessly across all
                 devices and screen sizes
               </p>
-              <span className="feature-link">Try it out <FontAwesomeIcon icon={faArrowRight} /></span>
+              <span className="feature-link">
+                Try it out <FontAwesomeIcon icon={faArrowRight} />
+              </span>
             </div>
 
             <div className="feature-card">
-              <FontAwesomeIcon icon={faTachometerAlt} className="feature-icon" />
+              <FontAwesomeIcon
+                icon={faTachometerAlt}
+                className="feature-icon"
+              />
               <h3>Lightning Fast</h3>
               <p>
                 Built with modern React and optimized for performance with
                 instant loading and smooth interactions
               </p>
-              <span className="feature-link">Experience Speed <FontAwesomeIcon icon={faArrowRight} /></span>
+              <span className="feature-link">
+                Experience Speed <FontAwesomeIcon icon={faArrowRight} />
+              </span>
             </div>
           </div>
         </div>

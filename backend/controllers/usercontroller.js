@@ -131,29 +131,31 @@ const addUser = async (req, res) => {
 
   try {
     // Generate username from email if not provided
-    const username = email ? email.split('@')[0] : `user_${Date.now()}`;
-    
+    const username = email ? email.split("@")[0] : `user_${Date.now()}`;
+
     // Generate a default password (in production, you'd want to handle this differently)
     const defaultPassword = "tempPassword123";
     const hashedPassword = await bcrypt.hash(defaultPassword, 10);
-    
-    const user = new User({ 
-      name, 
-      email, 
-      age, 
-      address, 
+
+    const user = new User({
+      name,
+      email,
+      age,
+      address,
       profilePicture,
       username: username,
-      password: hashedPassword
+      password: hashedPassword,
     });
-    
+
     await user.save();
-    
+
     // Remove password from response
     const userResponse = user.toObject();
     delete userResponse.password;
-    
-    return res.status(201).json({ message: "User created successfully", user: userResponse });
+
+    return res
+      .status(201)
+      .json({ message: "User created successfully", user: userResponse });
   } catch (err) {
     console.error("Error saving user:", err);
     return res
@@ -276,7 +278,7 @@ const deleteUser = async (req, res) => {
 const getAnalyticsOverview = async (req, res) => {
   try {
     const totalUsers = await User.countDocuments();
-    
+
     // Calculate date ranges
     const now = new Date();
     const thirtyDaysAgo = new Date(now - 30 * 24 * 60 * 60 * 1000);
@@ -285,31 +287,35 @@ const getAnalyticsOverview = async (req, res) => {
 
     // Get users registered in different time periods
     const newUsersLast30Days = await User.countDocuments({
-      createdAt: { $gte: thirtyDaysAgo }
+      createdAt: { $gte: thirtyDaysAgo },
     });
-    
+
     const newUsersLast7Days = await User.countDocuments({
-      createdAt: { $gte: sevenDaysAgo }
+      createdAt: { $gte: sevenDaysAgo },
     });
-    
+
     const newUsersToday = await User.countDocuments({
-      createdAt: { $gte: oneDayAgo }
+      createdAt: { $gte: oneDayAgo },
     });
 
     // Calculate growth rates
     const previousMonth = new Date(now - 60 * 24 * 60 * 60 * 1000);
     const usersLastMonth = await User.countDocuments({
-      createdAt: { $gte: previousMonth, $lt: thirtyDaysAgo }
+      createdAt: { $gte: previousMonth, $lt: thirtyDaysAgo },
     });
-    
-    const growthRate = usersLastMonth > 0 
-      ? ((newUsersLast30Days - usersLastMonth) / usersLastMonth * 100).toFixed(1)
-      : 100;
+
+    const growthRate =
+      usersLastMonth > 0
+        ? (
+            ((newUsersLast30Days - usersLastMonth) / usersLastMonth) *
+            100
+          ).toFixed(1)
+        : 100;
 
     // Get users by age groups
     const ageGroups = await User.aggregate([
       {
-        $match: { age: { $exists: true, $ne: null } }
+        $match: { age: { $exists: true, $ne: null } },
       },
       {
         $group: {
@@ -321,17 +327,17 @@ const getAnalyticsOverview = async (req, res) => {
                 { case: { $lte: ["$age", 35] }, then: "26-35" },
                 { case: { $lte: ["$age", 45] }, then: "36-45" },
                 { case: { $lte: ["$age", 55] }, then: "46-55" },
-                { case: { $gt: ["$age", 55] }, then: "55+" }
+                { case: { $gt: ["$age", 55] }, then: "55+" },
               ],
-              default: "Unknown"
-            }
+              default: "Unknown",
+            },
           },
-          count: { $sum: 1 }
-        }
+          count: { $sum: 1 },
+        },
       },
       {
-        $sort: { "_id": 1 }
-      }
+        $sort: { _id: 1 },
+      },
     ]);
 
     // Get recent users
@@ -344,39 +350,40 @@ const getAnalyticsOverview = async (req, res) => {
     const dailyRegistrations = await User.aggregate([
       {
         $match: {
-          createdAt: { $gte: thirtyDaysAgo }
-        }
+          createdAt: { $gte: thirtyDaysAgo },
+        },
       },
       {
         $group: {
           _id: {
             $dateToString: {
               format: "%Y-%m-%d",
-              date: "$createdAt"
-            }
+              date: "$createdAt",
+            },
           },
-          count: { $sum: 1 }
-        }
+          count: { $sum: 1 },
+        },
       },
       {
-        $sort: { "_id": 1 }
-      }
+        $sort: { _id: 1 },
+      },
     ]);
 
     // Calculate average age
     const avgAgeResult = await User.aggregate([
       {
-        $match: { age: { $exists: true, $ne: null } }
+        $match: { age: { $exists: true, $ne: null } },
       },
       {
         $group: {
           _id: null,
-          averageAge: { $avg: "$age" }
-        }
-      }
+          averageAge: { $avg: "$age" },
+        },
+      },
     ]);
 
-    const averageAge = avgAgeResult.length > 0 ? Math.round(avgAgeResult[0].averageAge) : 0;
+    const averageAge =
+      avgAgeResult.length > 0 ? Math.round(avgAgeResult[0].averageAge) : 0;
 
     return res.status(200).json({
       overview: {
@@ -385,17 +392,17 @@ const getAnalyticsOverview = async (req, res) => {
         newUsersLast7Days,
         newUsersToday,
         growthRate: parseFloat(growthRate),
-        averageAge
+        averageAge,
       },
       ageGroups,
       recentUsers,
-      dailyRegistrations
+      dailyRegistrations,
     });
   } catch (err) {
     console.error("Error fetching analytics:", err);
     return res.status(500).json({
       message: "Error fetching analytics data",
-      error: err.message
+      error: err.message,
     });
   }
 };

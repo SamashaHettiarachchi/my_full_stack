@@ -1,6 +1,6 @@
-import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { 
+import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
   faRocket,
   faUsers,
   faUserPlus,
@@ -26,17 +26,17 @@ import {
   faUser,
   faEye,
   faSearch,
-  faSort
-} from '@fortawesome/free-solid-svg-icons';
-import { 
-  faFacebookF, 
-  faTwitter, 
-  faLinkedinIn, 
+  faSort,
+} from "@fortawesome/free-solid-svg-icons";
+import {
+  faFacebookF,
+  faTwitter,
+  faLinkedinIn,
   faInstagram,
   faGithub,
-  faYoutube 
-} from '@fortawesome/free-brands-svg-icons';
-import './IconDemo.css';
+  faYoutube,
+} from "@fortawesome/free-brands-svg-icons";
+import "./IconDemo.css";
 
 function IconDemo() {
   return (
@@ -60,15 +60,24 @@ function IconDemo() {
             <span>Home</span>
           </div>
           <div className="icon-item">
-            <FontAwesomeIcon icon={faUsers} className="demo-icon primary-icon" />
+            <FontAwesomeIcon
+              icon={faUsers}
+              className="demo-icon primary-icon"
+            />
             <span>Users</span>
           </div>
           <div className="icon-item">
-            <FontAwesomeIcon icon={faUserPlus} className="demo-icon primary-icon" />
+            <FontAwesomeIcon
+              icon={faUserPlus}
+              className="demo-icon primary-icon"
+            />
             <span>Add User</span>
           </div>
           <div className="icon-item">
-            <FontAwesomeIcon icon={faChartLine} className="demo-icon primary-icon" />
+            <FontAwesomeIcon
+              icon={faChartLine}
+              className="demo-icon primary-icon"
+            />
             <span>Analytics</span>
           </div>
         </div>
@@ -114,7 +123,10 @@ function IconDemo() {
             <span>Success Message</span>
           </div>
           <div className="status-item warning">
-            <FontAwesomeIcon icon={faTriangleExclamation} className="status-icon" />
+            <FontAwesomeIcon
+              icon={faTriangleExclamation}
+              className="status-icon"
+            />
             <span>Warning Alert</span>
           </div>
           <div className="status-item error">
@@ -212,7 +224,8 @@ function IconDemo() {
       <div className="demo-footer">
         <p>
           <FontAwesomeIcon icon={faRocket} className="footer-icon" />
-          Font Awesome integration complete! Your UserApp now features professional icons throughout.
+          Font Awesome integration complete! Your UserApp now features
+          professional icons throughout.
         </p>
       </div>
     </div>

@@ -1,21 +1,21 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import './Register.css';
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import "./Register.css";
 
 const Register = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    username: '',
-    email: '',
-    password: '',
-    confirmPassword: ''
+    firstName: "",
+    lastName: "",
+    username: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
   });
-  
+
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState({});
-  const [serverError, setServerError] = useState('');
+  const [serverError, setServerError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
@@ -23,30 +23,30 @@ const Register = () => {
 
   // Check if user is already logged in
   useEffect(() => {
-    const token = localStorage.getItem('authToken');
+    const token = localStorage.getItem("authToken");
     if (token) {
-      navigate('/');
+      navigate("/");
     }
   }, [navigate]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
-    
+
     // Clear specific error when user starts typing
     if (errors[name]) {
-      setErrors(prev => ({
+      setErrors((prev) => ({
         ...prev,
-        [name]: ''
+        [name]: "",
       }));
     }
-    setServerError('');
+    setServerError("");
 
     // Calculate password strength
-    if (name === 'password') {
+    if (name === "password") {
       calculatePasswordStrength(value);
     }
   };
@@ -64,132 +64,141 @@ const Register = () => {
   const getPasswordStrengthText = () => {
     switch (passwordStrength) {
       case 0:
-      case 1: return 'Weak';
+      case 1:
+        return "Weak";
       case 2:
-      case 3: return 'Medium';
+      case 3:
+        return "Medium";
       case 4:
-      case 5: return 'Strong';
-      default: return 'Weak';
+      case 5:
+        return "Strong";
+      default:
+        return "Weak";
     }
   };
 
   const getPasswordStrengthColor = () => {
     switch (passwordStrength) {
       case 0:
-      case 1: return '#e74c3c';
+      case 1:
+        return "#e74c3c";
       case 2:
-      case 3: return '#f39c12';
+      case 3:
+        return "#f39c12";
       case 4:
-      case 5: return '#27ae60';
-      default: return '#e74c3c';
+      case 5:
+        return "#27ae60";
+      default:
+        return "#e74c3c";
     }
   };
 
   const validateForm = () => {
     const newErrors = {};
-    
+
     // First Name validation
     if (!formData.firstName.trim()) {
-      newErrors.firstName = 'First name is required';
+      newErrors.firstName = "First name is required";
     } else if (formData.firstName.length < 2) {
-      newErrors.firstName = 'First name must be at least 2 characters';
+      newErrors.firstName = "First name must be at least 2 characters";
     }
-    
+
     // Last Name validation
     if (!formData.lastName.trim()) {
-      newErrors.lastName = 'Last name is required';
+      newErrors.lastName = "Last name is required";
     } else if (formData.lastName.length < 2) {
-      newErrors.lastName = 'Last name must be at least 2 characters';
+      newErrors.lastName = "Last name must be at least 2 characters";
     }
-    
+
     // Username validation
     if (!formData.username.trim()) {
-      newErrors.username = 'Username is required';
+      newErrors.username = "Username is required";
     } else if (formData.username.length < 3) {
-      newErrors.username = 'Username must be at least 3 characters';
+      newErrors.username = "Username must be at least 3 characters";
     } else if (!/^[a-zA-Z0-9_]+$/.test(formData.username)) {
-      newErrors.username = 'Username can only contain letters, numbers, and underscores';
+      newErrors.username =
+        "Username can only contain letters, numbers, and underscores";
     }
-    
+
     // Email validation
     if (!formData.email.trim()) {
-      newErrors.email = 'Email is required';
+      newErrors.email = "Email is required";
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = 'Please enter a valid email address';
+      newErrors.email = "Please enter a valid email address";
     }
-    
+
     // Password validation
     if (!formData.password) {
-      newErrors.password = 'Password is required';
+      newErrors.password = "Password is required";
     } else if (formData.password.length < 6) {
-      newErrors.password = 'Password must be at least 6 characters';
+      newErrors.password = "Password must be at least 6 characters";
     }
-    
+
     // Confirm Password validation
     if (!formData.confirmPassword) {
-      newErrors.confirmPassword = 'Please confirm your password';
+      newErrors.confirmPassword = "Please confirm your password";
     } else if (formData.password !== formData.confirmPassword) {
-      newErrors.confirmPassword = 'Passwords do not match';
+      newErrors.confirmPassword = "Passwords do not match";
     }
-    
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setServerError('');
-    
+    setServerError("");
+
     if (!validateForm()) {
       return;
     }
-    
+
     setLoading(true);
-    
+
     try {
-      const response = await fetch('http://localhost:5000/users/register', {
-        method: 'POST',
+      const response = await fetch("http://localhost:5000/users/register", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           firstName: formData.firstName,
           lastName: formData.lastName,
           username: formData.username,
           email: formData.email,
-          password: formData.password
+          password: formData.password,
         }),
       });
-      
+
       const data = await response.json();
-      
+
       if (response.ok) {
         // Store token in localStorage
-        localStorage.setItem('authToken', data.token);
-        localStorage.setItem('user', JSON.stringify(data.user));
-        
+        localStorage.setItem("authToken", data.token);
+        localStorage.setItem("user", JSON.stringify(data.user));
+
         setShowSuccess(true);
-        
+
         // Redirect after showing success message
         setTimeout(() => {
-          navigate('/');
+          navigate("/");
         }, 2000);
       } else {
-        setServerError(data.message || 'Registration failed');
+        setServerError(data.message || "Registration failed");
         if (data.errors && Array.isArray(data.errors)) {
-          setServerError(data.errors.join(', '));
+          setServerError(data.errors.join(", "));
         }
       }
     } catch (error) {
-      console.error('Registration error:', error);
-      setServerError('Network error. Please try again.');
+      console.error("Registration error:", error);
+      setServerError("Network error. Please try again.");
     } finally {
       setLoading(false);
     }
   };
 
   const togglePasswordVisibility = (field) => {
-    if (field === 'password') {
+    if (field === "password") {
       setShowPassword(!showPassword);
     } else {
       setShowConfirmPassword(!showConfirmPassword);
@@ -204,7 +213,7 @@ const Register = () => {
         <div className="bg-shape shape-3"></div>
         <div className="bg-shape shape-4"></div>
       </div>
-      
+
       <div className="register-container">
         <div className="register-card">
           <div className="register-header">
@@ -212,7 +221,9 @@ const Register = () => {
               <span className="icon-circle">🚀</span>
             </div>
             <h2 className="register-title">Join UserApp</h2>
-            <p className="register-subtitle">Create your account and start managing users efficiently</p>
+            <p className="register-subtitle">
+              Create your account and start managing users efficiently
+            </p>
           </div>
 
           {showSuccess && (
@@ -243,7 +254,7 @@ const Register = () => {
                     name="firstName"
                     value={formData.firstName}
                     onChange={handleChange}
-                    className={`form-input ${errors.firstName ? 'error' : ''}`}
+                    className={`form-input ${errors.firstName ? "error" : ""}`}
                     placeholder="Enter first name"
                     autoComplete="given-name"
                   />
@@ -269,7 +280,7 @@ const Register = () => {
                     name="lastName"
                     value={formData.lastName}
                     onChange={handleChange}
-                    className={`form-input ${errors.lastName ? 'error' : ''}`}
+                    className={`form-input ${errors.lastName ? "error" : ""}`}
                     placeholder="Enter last name"
                     autoComplete="family-name"
                   />
@@ -296,7 +307,7 @@ const Register = () => {
                   name="username"
                   value={formData.username}
                   onChange={handleChange}
-                  className={`form-input ${errors.username ? 'error' : ''}`}
+                  className={`form-input ${errors.username ? "error" : ""}`}
                   placeholder="Choose a unique username"
                   autoComplete="username"
                 />
@@ -322,7 +333,7 @@ const Register = () => {
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  className={`form-input ${errors.email ? 'error' : ''}`}
+                  className={`form-input ${errors.email ? "error" : ""}`}
                   placeholder="Enter your email"
                   autoComplete="email"
                 />
@@ -348,31 +359,31 @@ const Register = () => {
                   name="password"
                   value={formData.password}
                   onChange={handleChange}
-                  className={`form-input ${errors.password ? 'error' : ''}`}
+                  className={`form-input ${errors.password ? "error" : ""}`}
                   placeholder="Create a strong password"
                   autoComplete="new-password"
                 />
                 <button
                   type="button"
                   className="password-toggle"
-                  onClick={() => togglePasswordVisibility('password')}
+                  onClick={() => togglePasswordVisibility("password")}
                 >
-                  <span>{showPassword ? '🙈' : '👁️'}</span>
+                  <span>{showPassword ? "🙈" : "👁️"}</span>
                 </button>
                 <div className="input-focus-effect"></div>
               </div>
               {formData.password && (
                 <div className="password-strength">
                   <div className="strength-bar">
-                    <div 
-                      className="strength-fill" 
-                      style={{ 
+                    <div
+                      className="strength-fill"
+                      style={{
                         width: `${(passwordStrength / 5) * 100}%`,
-                        backgroundColor: getPasswordStrengthColor()
+                        backgroundColor: getPasswordStrengthColor(),
                       }}
                     ></div>
                   </div>
-                  <span 
+                  <span
                     className="strength-text"
                     style={{ color: getPasswordStrengthColor() }}
                   >
@@ -400,16 +411,18 @@ const Register = () => {
                   name="confirmPassword"
                   value={formData.confirmPassword}
                   onChange={handleChange}
-                  className={`form-input ${errors.confirmPassword ? 'error' : ''}`}
+                  className={`form-input ${
+                    errors.confirmPassword ? "error" : ""
+                  }`}
                   placeholder="Confirm your password"
                   autoComplete="new-password"
                 />
                 <button
                   type="button"
                   className="password-toggle"
-                  onClick={() => togglePasswordVisibility('confirm')}
+                  onClick={() => togglePasswordVisibility("confirm")}
                 >
-                  <span>{showConfirmPassword ? '🙈' : '👁️'}</span>
+                  <span>{showConfirmPassword ? "🙈" : "👁️"}</span>
                 </button>
                 <div className="input-focus-effect"></div>
               </div>
@@ -421,9 +434,9 @@ const Register = () => {
               )}
             </div>
 
-            <button 
-              type="submit" 
-              className={`register-button ${loading ? 'loading' : ''}`}
+            <button
+              type="submit"
+              className={`register-button ${loading ? "loading" : ""}`}
               disabled={loading}
             >
               {loading ? (
@@ -442,7 +455,7 @@ const Register = () => {
 
           <div className="register-footer">
             <p className="login-text">
-              Already have an account? 
+              Already have an account?
               <Link to="/login" className="login-link">
                 Sign in here
               </Link>

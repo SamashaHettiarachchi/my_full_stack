@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { 
-  faUsers, 
-  faEdit, 
-  faTrash, 
-  faPlus, 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faUsers,
+  faEdit,
+  faTrash,
+  faPlus,
   faSearch,
   faUser,
   faEnvelope,
   faCalendar,
   faLocationDot,
   faTriangleExclamation,
-  faSpinner
-} from '@fortawesome/free-solid-svg-icons';
+  faSpinner,
+} from "@fortawesome/free-solid-svg-icons";
 import "./UserDetails.css";
 
 function UserDetails() {
@@ -101,7 +101,10 @@ function UserDetails() {
     return (
       <div className="user-details-container">
         <div className="error">
-          <FontAwesomeIcon icon={faTriangleExclamation} className="error-icon" />
+          <FontAwesomeIcon
+            icon={faTriangleExclamation}
+            className="error-icon"
+          />
           <h3>Error:</h3>
           <p>{error}</p>
           <button onClick={fetchUsers} className="retry-btn">
@@ -152,15 +155,24 @@ function UserDetails() {
                     {user.name}
                   </h3>
                   <p>
-                    <FontAwesomeIcon icon={faEnvelope} className="detail-icon" />
+                    <FontAwesomeIcon
+                      icon={faEnvelope}
+                      className="detail-icon"
+                    />
                     <strong>Email:</strong> {user.email}
                   </p>
                   <p>
-                    <FontAwesomeIcon icon={faCalendar} className="detail-icon" />
+                    <FontAwesomeIcon
+                      icon={faCalendar}
+                      className="detail-icon"
+                    />
                     <strong>Age:</strong> {user.age}
                   </p>
                   <p>
-                    <FontAwesomeIcon icon={faLocationDot} className="detail-icon" />
+                    <FontAwesomeIcon
+                      icon={faLocationDot}
+                      className="detail-icon"
+                    />
                     <strong>Address:</strong> {user.address}
                   </p>
                   {user.profilePicture && (
