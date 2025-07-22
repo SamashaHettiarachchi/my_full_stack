@@ -36,6 +36,8 @@ const corsOptions = {
       "http://127.0.0.1:3003",
       // Add your production frontend URL here after deployment
       process.env.FRONTEND_URL,
+      // Your actual Vercel deployment
+      "https://my-full-stack-one.vercel.app",
       // Railway backend patterns
       "https://your-app-name.up.railway.app",
       // Common frontend deployment patterns
