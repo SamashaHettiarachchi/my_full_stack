@@ -14,6 +14,7 @@ import {
   faSignInAlt,
   faShieldAlt,
 } from "@fortawesome/free-solid-svg-icons";
+import config from "../../config/api";
 import "./Register.css";
 
 const Register = () => {
@@ -170,7 +171,7 @@ const Register = () => {
     setLoading(true);
 
     try {
-      const response = await fetch("http://localhost:5000/users/register", {
+      const response = await fetch(config.getApiUrl(config.endpoints.register), {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

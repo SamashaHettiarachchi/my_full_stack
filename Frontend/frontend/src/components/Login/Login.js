@@ -13,6 +13,7 @@ import {
   faUser,
   faUserPlus,
 } from "@fortawesome/free-solid-svg-icons";
+import config from "../../config/api";
 import "./Login.css";
 
 const Login = () => {
@@ -86,7 +87,7 @@ const Login = () => {
     setLoading(true);
 
     try {
-      const response = await fetch("http://localhost:5000/users/login", {
+      const response = await fetch(config.getApiUrl(config.endpoints.login), {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
