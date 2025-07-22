@@ -185,7 +185,7 @@ function Footer() {
               <div>
                 <span className="contact-label">Phone</span>
                 <a href="tel:+15551234567" className="contact-value">
-                  (555) 123-4567
+                  (+977) 123-4567
                 </a>
               </div>
             </div>
@@ -193,7 +193,7 @@ function Footer() {
               <FontAwesomeIcon icon={faMapMarkerAlt} className="contact-icon" />
               <div>
                 <span className="contact-label">Location</span>
-                <span className="contact-value">San Francisco, CA</span>
+                <span className="contact-value">Sri Lanka</span>
               </div>
             </div>
           </div>

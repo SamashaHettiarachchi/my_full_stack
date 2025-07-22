@@ -204,25 +204,10 @@ const UserDetails = () => {
 
         <div className="sort-controls">
           <div className="sort-label">
-            <FontAwesomeIcon icon={faFilter} className="sort-label-icon" />
-            <span>Sort by:</span>
+           
           </div>
 
-          <div className="sort-dropdown-container">
-            <FontAwesomeIcon icon={faSort} className="sort-dropdown-icon" />
-            <select
-              value={sortBy}
-              onChange={(e) => setSortBy(e.target.value)}
-              className="sort-select"
-            >
-              <option value="name">👤 Name (A-Z)</option>
-              <option value="age">🎂 Age</option>
-              <option value="email">📧 Email</option>
-              <option value="address">📍 Address</option>
-              <option value="createdAt">📅 Date Added</option>
-            </select>
-          </div>
-
+          
           <button
             onClick={() => setSortOrder(sortOrder === "asc" ? "desc" : "asc")}
             className="sort-order-btn"

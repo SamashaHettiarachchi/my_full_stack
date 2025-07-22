@@ -17,7 +17,7 @@ import {
   faTrashAlt,
   faCheckCircle,
   faExclamationTriangle,
-  faSpinner
+  faSpinner,
 } from "@fortawesome/free-solid-svg-icons";
 import "./Profile.css";
 
@@ -182,9 +182,14 @@ const Profile = () => {
   const getUserInitials = () => {
     // Priority: name -> firstName+lastName -> firstName -> username -> "U"
     if (user.name) {
-      const nameParts = user.name.trim().split(' ').filter(part => part.length > 0);
+      const nameParts = user.name
+        .trim()
+        .split(" ")
+        .filter((part) => part.length > 0);
       if (nameParts.length > 1) {
-        return (nameParts[0][0] + nameParts[nameParts.length - 1][0]).toUpperCase();
+        return (
+          nameParts[0][0] + nameParts[nameParts.length - 1][0]
+        ).toUpperCase();
       }
       return user.name[0].toUpperCase();
     } else if (user.firstName && user.lastName) {
@@ -231,15 +236,10 @@ const Profile = () => {
               {user.profilePicture ? (
                 <img src={user.profilePicture} alt="Profile" />
               ) : (
-                <span className="avatar-text">
-                  {getUserInitials()}
-                </span>
+                <span className="avatar-text">{getUserInitials()}</span>
               )}
             </div>
-            <button className="change-photo-btn">
-              <FontAwesomeIcon icon={faCamera} className="btn-icon" />
-              Change Photo
-            </button>
+            
           </div>
 
           <div className="profile-title">
@@ -268,9 +268,9 @@ const Profile = () => {
                   onClick={handleSave}
                   disabled={saving}
                 >
-                  <FontAwesomeIcon 
-                    icon={saving ? faSpinner : faSave} 
-                    className="btn-icon" 
+                  <FontAwesomeIcon
+                    icon={saving ? faSpinner : faSave}
+                    className="btn-icon"
                     spin={saving}
                   />
                   {saving ? "Saving..." : "Save Changes"}
@@ -298,7 +298,10 @@ const Profile = () => {
 
       {errors.general && (
         <div className="error-message">
-          <FontAwesomeIcon icon={faExclamationTriangle} className="error-icon" />
+          <FontAwesomeIcon
+            icon={faExclamationTriangle}
+            className="error-icon"
+          />
           {errors.general}
         </div>
       )}
@@ -390,7 +393,10 @@ const Profile = () => {
 
                 <div className="info-item">
                   <label>
-                    <FontAwesomeIcon icon={faCalendarAlt} className="label-icon" />
+                    <FontAwesomeIcon
+                      icon={faCalendarAlt}
+                      className="label-icon"
+                    />
                     Age
                   </label>
                   {isEditing ? (
@@ -472,7 +478,10 @@ const Profile = () => {
 
                 <div className="info-item full-width">
                   <label>
-                    <FontAwesomeIcon icon={faMapMarkerAlt} className="label-icon" />
+                    <FontAwesomeIcon
+                      icon={faMapMarkerAlt}
+                      className="label-icon"
+                    />
                     Address
                   </label>
                   {isEditing ? (
