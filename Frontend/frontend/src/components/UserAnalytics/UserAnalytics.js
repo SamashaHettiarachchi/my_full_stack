@@ -23,6 +23,9 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import "./UserAnalytics.css";
 
+// API Configuration
+const API_URL = process.env.REACT_APP_API_URL || "https://myfullstack-production.up.railway.app";
+
 const UserAnalytics = () => {
   const [analytics, setAnalytics] = useState({
     totalUsers: 0,
@@ -46,7 +49,7 @@ const UserAnalytics = () => {
       try {
         // Fetch analytics data from dedicated endpoint
         const response = await fetch(
-          "http://localhost:5000/users/analytics/overview",
+          `${API_URL}/users/analytics/overview`,
           {
             method: "GET",
             headers: {

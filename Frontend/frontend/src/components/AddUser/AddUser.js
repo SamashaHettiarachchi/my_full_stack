@@ -17,6 +17,9 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import "./AddUser.css";
 
+// API Configuration
+const API_URL = process.env.REACT_APP_API_URL || "https://myfullstack-production.up.railway.app";
+
 function AddUser() {
   const navigate = useNavigate();
   const [user, setUser] = useState({
@@ -100,7 +103,7 @@ function AddUser() {
 
     setIsLoading(true);
     try {
-      const response = await fetch("http://localhost:5000/users", {
+      const response = await fetch(`${API_URL}/users`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
