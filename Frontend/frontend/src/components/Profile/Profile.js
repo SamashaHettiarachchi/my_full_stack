@@ -46,6 +46,8 @@ const Profile = () => {
       }
 
       const parsedUser = JSON.parse(userData);
+      
+      // Security: Profile page should only show the current user's own data
       setUser(parsedUser);
       setEditedUser({
         firstName: parsedUser.firstName || "",

@@ -48,7 +48,60 @@
 .refresh-btn:hover {
   background: rgba(255, 255, 255, 0.3);
   transform: translateY(-2px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Access Level Notice */
+.access-notice {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  margin-bottom: 2rem;
+  border-radius: 12px;
+  border-left: 4px solid;
+  backdrop-filter: blur(10px);
+  animation: slideIn 0.5s ease;
+}
+
+.access-notice.admin {
+  background: rgba(76, 175, 80, 0.1);
+  border-left-color: #4caf50;
+  color: #2e7d32;
+}
+
+.access-notice.user {
+  background: rgba(255, 193, 7, 0.1);
+  border-left-color: #ffc107;
+  color: #f57c00;
+}
+
+.access-icon {
+  font-size: 1.5rem;
+  opacity: 0.8;
+}
+
+.access-info strong {
+  display: block;
+  font-size: 1.1rem;
+  margin-bottom: 0.25rem;
+}
+
+.access-info p {
+  margin: 0;
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Loading & Error States */
