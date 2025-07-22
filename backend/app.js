@@ -36,8 +36,12 @@ const corsOptions = {
       "http://127.0.0.1:3003",
       // Add your production frontend URL here after deployment
       process.env.FRONTEND_URL,
-      // Common Render.com pattern (update with your actual URL)
-      "https://your-frontend-app.onrender.com"
+      // Railway backend patterns
+      "https://your-app-name.up.railway.app",
+      // Common frontend deployment patterns
+      "https://your-frontend-app.netlify.app",
+      "https://your-frontend-app.vercel.app",
+      "https://your-frontend-app.railway.app"
     ].filter(Boolean); // Remove undefined values
 
     if (allowedOrigins.includes(origin)) {
