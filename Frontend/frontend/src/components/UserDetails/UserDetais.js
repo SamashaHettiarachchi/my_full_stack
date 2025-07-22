@@ -16,6 +16,9 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import "./UserDetails.css";
 
+// API Configuration
+const API_URL = process.env.REACT_APP_API_URL || "https://myfullstack-production.up.railway.app";
+
 function UserDetails() {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -31,7 +34,7 @@ function UserDetails() {
       setLoading(true);
       setError(null);
 
-      const response = await fetch("http://localhost:5000/users", {
+      const response = await fetch(`${API_URL}/users`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -59,7 +62,7 @@ function UserDetails() {
   const deleteUser = async (userId) => {
     if (window.confirm("Are you sure you want to delete this user?")) {
       try {
-        const response = await fetch(`http://localhost:5000/users/${userId}`, {
+        const response = await fetch(`${API_URL}/users/${userId}`, {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",
