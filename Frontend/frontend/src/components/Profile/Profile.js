@@ -1,5 +1,24 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faUser,
+  faEdit,
+  faSave,
+  faTimes,
+  faCamera,
+  faEnvelope,
+  faPhone,
+  faMapMarkerAlt,
+  faCalendarAlt,
+  faUserTag,
+  faFileText,
+  faCog,
+  faTrashAlt,
+  faCheckCircle,
+  faExclamationTriangle,
+  faSpinner
+} from "@fortawesome/free-solid-svg-icons";
 import "./Profile.css";
 
 const Profile = () => {
@@ -160,6 +179,24 @@ const Profile = () => {
     }
   };
 
+  const getUserInitials = () => {
+    // Priority: name -> firstName+lastName -> firstName -> username -> "U"
+    if (user.name) {
+      const nameParts = user.name.trim().split(' ').filter(part => part.length > 0);
+      if (nameParts.length > 1) {
+        return (nameParts[0][0] + nameParts[nameParts.length - 1][0]).toUpperCase();
+      }
+      return user.name[0].toUpperCase();
+    } else if (user.firstName && user.lastName) {
+      return (user.firstName[0] + user.lastName[0]).toUpperCase();
+    } else if (user.firstName) {
+      return user.firstName[0].toUpperCase();
+    } else if (user.username) {
+      return user.username[0].toUpperCase();
+    }
+    return "U";
+  };
+
   const getMemberSince = () => {
     if (user.createdAt) {
       return new Date(user.createdAt).toLocaleDateString("en-US", {
@@ -174,7 +211,7 @@ const Profile = () => {
     return (
       <div className="profile-container">
         <div className="loading-spinner">
-          <div className="spinner"></div>
+          <FontAwesomeIcon icon={faSpinner} spin className="spinner-icon" />
           <p>Loading your profile...</p>
         </div>
       </div>
@@ -195,16 +232,12 @@ const Profile = () => {
                 <img src={user.profilePicture} alt="Profile" />
               ) : (
                 <span className="avatar-text">
-                  {(
-                    user.firstName?.[0] ||
-                    user.username?.[0] ||
-                    "U"
-                  ).toUpperCase()}
+                  {getUserInitials()}
                 </span>
               )}
             </div>
             <button className="change-photo-btn">
-              <span className="btn-icon">📷</span>
+              <FontAwesomeIcon icon={faCamera} className="btn-icon" />
               Change Photo
             </button>
           </div>
@@ -225,7 +258,7 @@ const Profile = () => {
                 className="edit-profile-btn"
                 onClick={() => setIsEditing(true)}
               >
-                <span className="btn-icon">✏️</span>
+                <FontAwesomeIcon icon={faEdit} className="btn-icon" />
                 Edit Profile
               </button>
             ) : (
@@ -235,7 +268,11 @@ const Profile = () => {
                   onClick={handleSave}
                   disabled={saving}
                 >
-                  <span className="btn-icon">💾</span>
+                  <FontAwesomeIcon 
+                    icon={saving ? faSpinner : faSave} 
+                    className="btn-icon" 
+                    spin={saving}
+                  />
                   {saving ? "Saving..." : "Save Changes"}
                 </button>
                 <button
@@ -243,7 +280,7 @@ const Profile = () => {
                   onClick={handleCancel}
                   disabled={saving}
                 >
-                  <span className="btn-icon">❌</span>
+                  <FontAwesomeIcon icon={faTimes} className="btn-icon" />
                   Cancel
                 </button>
               </div>
@@ -254,14 +291,14 @@ const Profile = () => {
 
       {showSuccess && (
         <div className="success-message">
-          <span className="success-icon">✅</span>
+          <FontAwesomeIcon icon={faCheckCircle} className="success-icon" />
           Profile updated successfully!
         </div>
       )}
 
       {errors.general && (
         <div className="error-message">
-          <span className="error-icon">❌</span>
+          <FontAwesomeIcon icon={faExclamationTriangle} className="error-icon" />
           {errors.general}
         </div>
       )}
@@ -272,7 +309,7 @@ const Profile = () => {
           <div className="profile-section">
             <div className="section-header">
               <h2>
-                <span className="section-icon">👤</span>
+                <FontAwesomeIcon icon={faUser} className="section-icon" />
                 Personal Information
               </h2>
             </div>
@@ -280,7 +317,10 @@ const Profile = () => {
             <div className="section-content">
               <div className="info-grid">
                 <div className="info-item">
-                  <label>First Name</label>
+                  <label>
+                    <FontAwesomeIcon icon={faUser} className="label-icon" />
+                    First Name
+                  </label>
                   {isEditing ? (
                     <div className="input-wrapper">
                       <input
@@ -301,7 +341,10 @@ const Profile = () => {
                 </div>
 
                 <div className="info-item">
-                  <label>Last Name</label>
+                  <label>
+                    <FontAwesomeIcon icon={faUser} className="label-icon" />
+                    Last Name
+                  </label>
                   {isEditing ? (
                     <div className="input-wrapper">
                       <input
@@ -322,7 +365,10 @@ const Profile = () => {
                 </div>
 
                 <div className="info-item">
-                  <label>Username</label>
+                  <label>
+                    <FontAwesomeIcon icon={faUserTag} className="label-icon" />
+                    Username
+                  </label>
                   {isEditing ? (
                     <div className="input-wrapper">
                       <input
@@ -343,7 +389,10 @@ const Profile = () => {
                 </div>
 
                 <div className="info-item">
-                  <label>Age</label>
+                  <label>
+                    <FontAwesomeIcon icon={faCalendarAlt} className="label-icon" />
+                    Age
+                  </label>
                   {isEditing ? (
                     <div className="input-wrapper">
                       <input
@@ -372,7 +421,7 @@ const Profile = () => {
           <div className="profile-section">
             <div className="section-header">
               <h2>
-                <span className="section-icon">📧</span>
+                <FontAwesomeIcon icon={faEnvelope} className="section-icon" />
                 Contact Information
               </h2>
             </div>
@@ -380,7 +429,10 @@ const Profile = () => {
             <div className="section-content">
               <div className="info-grid">
                 <div className="info-item full-width">
-                  <label>Email Address</label>
+                  <label>
+                    <FontAwesomeIcon icon={faEnvelope} className="label-icon" />
+                    Email Address
+                  </label>
                   {isEditing ? (
                     <div className="input-wrapper">
                       <input
@@ -401,7 +453,10 @@ const Profile = () => {
                 </div>
 
                 <div className="info-item">
-                  <label>Phone Number</label>
+                  <label>
+                    <FontAwesomeIcon icon={faPhone} className="label-icon" />
+                    Phone Number
+                  </label>
                   {isEditing ? (
                     <input
                       type="tel"
@@ -416,7 +471,10 @@ const Profile = () => {
                 </div>
 
                 <div className="info-item full-width">
-                  <label>Address</label>
+                  <label>
+                    <FontAwesomeIcon icon={faMapMarkerAlt} className="label-icon" />
+                    Address
+                  </label>
                   {isEditing ? (
                     <textarea
                       name="address"
@@ -437,14 +495,17 @@ const Profile = () => {
           <div className="profile-section">
             <div className="section-header">
               <h2>
-                <span className="section-icon">📝</span>
+                <FontAwesomeIcon icon={faFileText} className="section-icon" />
                 About Me
               </h2>
             </div>
 
             <div className="section-content">
               <div className="info-item full-width">
-                <label>Bio</label>
+                <label>
+                  <FontAwesomeIcon icon={faFileText} className="label-icon" />
+                  Bio
+                </label>
                 {isEditing ? (
                   <textarea
                     name="bio"
@@ -467,7 +528,7 @@ const Profile = () => {
           <div className="profile-section danger-section">
             <div className="section-header">
               <h2>
-                <span className="section-icon">⚙️</span>
+                <FontAwesomeIcon icon={faCog} className="section-icon" />
                 Account Settings
               </h2>
             </div>
@@ -480,7 +541,7 @@ const Profile = () => {
                   className="delete-account-btn"
                   onClick={handleDeleteAccount}
                 >
-                  <span className="btn-icon">🗑️</span>
+                  <FontAwesomeIcon icon={faTrashAlt} className="btn-icon" />
                   Delete Account
                 </button>
               </div>

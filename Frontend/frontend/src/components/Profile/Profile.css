@@ -16,13 +16,9 @@
   color: white;
 }
 
-.spinner {
-  width: 50px;
-  height: 50px;
-  border: 4px solid rgba(255, 255, 255, 0.3);
-  border-top: 4px solid white;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
+.spinner-icon {
+  font-size: 3rem;
+  color: white;
   margin-bottom: 20px;
 }
 
@@ -104,10 +100,16 @@
 }
 
 .avatar-text {
-  font-size: 48px;
-  font-weight: bold;
+  font-size: 3.5rem;
+  font-weight: 700;
   color: #667eea;
   text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .change-photo-btn {
@@ -123,7 +125,11 @@
   backdrop-filter: blur(10px);
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 8px;
+}
+
+.change-photo-btn .btn-icon {
+  font-size: 14px;
 }
 
 .change-photo-btn:hover {
@@ -255,10 +261,20 @@
   border: 1px solid rgba(76, 175, 80, 0.3);
 }
 
+.success-icon {
+  font-size: 1.2em;
+  color: white;
+}
+
 .error-message {
   background: rgba(244, 67, 54, 0.9);
   color: white;
   border: 1px solid rgba(244, 67, 54, 0.3);
+}
+
+.error-icon {
+  font-size: 1.2em;
+  color: white;
 }
 
 @keyframes slideInDown {
@@ -317,7 +333,19 @@
 }
 
 .section-icon {
-  font-size: 1.2em;
+  font-size: 1.3em;
+  margin-right: 5px;
+  opacity: 0.9;
+}
+
+/* Button Icon Styling */
+.btn-icon {
+  font-size: 1em;
+  margin-right: 2px;
+}
+
+.edit-profile-btn .btn-icon {
+  font-size: 1.1em;
 }
 
 .section-content {
@@ -347,6 +375,15 @@
   font-size: 0.9rem;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.label-icon {
+  font-size: 1.1em;
+  color: #667eea;
+  opacity: 0.8;
 }
 
 .info-item p {
