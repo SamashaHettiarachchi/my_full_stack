@@ -13,6 +13,12 @@ import {
   faLocationDot,
   faTriangleExclamation,
   faSpinner,
+  faSort,
+  faSortUp,
+  faSortDown,
+  faFilter,
+  faCalendarDays,
+  faIdBadge,
 } from "@fortawesome/free-solid-svg-icons";
 import "./UserDetails.css";
 
@@ -37,13 +43,26 @@ const UserDetails = () => {
   useEffect(() => {
     let filtered = users.filter(user =>
       user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      user.email.toLowerCase().includes(searchTerm.toLowerCase())
+      user.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      (user.address && user.address.toLowerCase().includes(searchTerm.toLowerCase()))
     );
 
-    // Sort users
+    // Enhanced sorting logic
     filtered.sort((a, b) => {
-      let aVal = sortBy === 'age' ? parseInt(a[sortBy]) : a[sortBy].toLowerCase();
-      let bVal = sortBy === 'age' ? parseInt(b[sortBy]) : b[sortBy].toLowerCase();
+      let aVal, bVal;
+      
+      if (sortBy === 'age') {
+        aVal = parseInt(a[sortBy]) || 0;
+        bVal = parseInt(b[sortBy]) || 0;
+      } else if (sortBy === 'createdAt') {
+        // Use MongoDB ObjectId creation time or actual createdAt field
+        aVal = new Date(a.createdAt || a._id);
+        bVal = new Date(b.createdAt || b._id);
+      } else {
+        // String comparison for name, email, address
+        aVal = (a[sortBy] || '').toLowerCase();
+        bVal = (b[sortBy] || '').toLowerCase();
+      }
       
       if (sortOrder === 'asc') {
         return aVal > bVal ? 1 : -1;
@@ -157,33 +176,71 @@ const UserDetails = () => {
         </button>
       </div>
 
-      {/* Search and Filter Controls */}
+      {/* Enhanced Search and Filter Controls */}
       <div className="controls-section">
         <div className="search-container">
           <FontAwesomeIcon icon={faSearch} className="search-icon" />
           <input
             type="text"
-            placeholder="Search by name or email..."
+            placeholder="Search by name, email, or address..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="search-input"
           />
+          {searchTerm && (
+            <button
+              onClick={() => setSearchTerm("")}
+              className="search-clear-btn"
+              title="Clear search"
+            >
+              ×
+            </button>
+          )}
         </div>
+        
         <div className="sort-controls">
-          <select
-            value={sortBy}
-            onChange={(e) => setSortBy(e.target.value)}
-            className="sort-select"
-          >
-            <option value="name">Sort by Name</option>
-            <option value="age">Sort by Age</option>
-            <option value="email">Sort by Email</option>
-          </select>
+          <div className="sort-label">
+            <FontAwesomeIcon icon={faFilter} className="sort-label-icon" />
+            <span>Sort by:</span>
+          </div>
+          
+          <div className="sort-dropdown-container">
+            <FontAwesomeIcon icon={faSort} className="sort-dropdown-icon" />
+            <select
+              value={sortBy}
+              onChange={(e) => setSortBy(e.target.value)}
+              className="sort-select"
+            >
+              <option value="name">
+                👤 Name (A-Z)
+              </option>
+              <option value="age">
+                🎂 Age
+              </option>
+              <option value="email">
+                📧 Email
+              </option>
+              <option value="address">
+                📍 Address
+              </option>
+              <option value="createdAt">
+                📅 Date Added
+              </option>
+            </select>
+          </div>
+          
           <button
             onClick={() => setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc')}
             className="sort-order-btn"
+            title={`Currently sorting ${sortOrder === 'asc' ? 'ascending' : 'descending'} - Click to ${sortOrder === 'asc' ? 'descend' : 'ascend'}`}
           >
-            {sortOrder === 'asc' ? '↑' : '↓'}
+            <FontAwesomeIcon 
+              icon={sortOrder === 'asc' ? faSortUp : faSortDown}
+              className="sort-order-icon"
+            />
+            <span className="sort-order-text">
+              {sortOrder === 'asc' ? 'Asc' : 'Desc'}
+            </span>
           </button>
         </div>
       </div>

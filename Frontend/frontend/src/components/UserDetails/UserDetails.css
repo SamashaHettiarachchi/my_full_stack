@@ -385,77 +385,158 @@
   animation-delay: 0.6s;
 }
 
-/* Search and Controls Section */
+/* Enhanced Search and Controls Section */
 .controls-section {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 2rem;
-  padding: 1.5rem;
-  background: white;
-  border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.9) 100%);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
   gap: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .search-container {
   position: relative;
   flex: 1;
-  max-width: 400px;
+  max-width: 450px;
 }
 
 .search-icon {
   position: absolute;
-  left: 1rem;
+  left: 1.2rem;
   top: 50%;
   transform: translateY(-50%);
   color: #667eea;
-  font-size: 1rem;
-  z-index: 1;
+  font-size: 1.1rem;
+  z-index: 2;
+  transition: all 0.3s ease;
 }
 
 .search-input {
   width: 100%;
-  padding: 1rem 1rem 1rem 3rem;
+  padding: 1.2rem 3.5rem 1.2rem 3rem;
   border: 2px solid #e2e8f0;
-  border-radius: 12px;
+  border-radius: 15px;
   font-size: 1rem;
   transition: all 0.3s ease;
-  background: #f8fafc;
+  background: rgba(248, 250, 252, 0.8);
+  backdrop-filter: blur(5px);
 }
 
 .search-input:focus {
   outline: none;
   border-color: #667eea;
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.15);
   background: white;
+  transform: translateY(-1px);
+}
+
+.search-input:focus + .search-icon {
+  color: #5a67d8;
+  transform: translateY(-50%) scale(1.1);
 }
 
 .search-input::placeholder {
   color: #a0aec0;
+  font-style: italic;
+}
+
+.search-clear-btn {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #e2e8f0;
+  border: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  font-size: 16px;
+  color: #64748b;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-clear-btn:hover {
+  background: #cbd5e1;
+  color: #475569;
+  transform: translateY(-50%) scale(1.1);
 }
 
 .sort-controls {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 1.5rem;
+  flex-shrink: 0;
+}
+
+.sort-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #64748b;
+  font-weight: 600;
+  font-size: 0.95rem;
+  white-space: nowrap;
+}
+
+.sort-label-icon {
+  color: #667eea;
+  font-size: 1rem;
+}
+
+.sort-dropdown-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.sort-dropdown-icon {
+  position: absolute;
+  left: 1rem;
+  color: #667eea;
+  font-size: 1rem;
+  z-index: 1;
+  pointer-events: none;
 }
 
 .sort-select {
-  padding: 1rem 1.5rem;
+  padding: 1rem 1rem 1rem 2.5rem;
   border: 2px solid #e2e8f0;
-  border-radius: 12px;
+  border-radius: 15px;
   font-size: 1rem;
-  background: #f8fafc;
+  background: rgba(248, 250, 252, 0.8);
+  backdrop-filter: blur(5px);
   cursor: pointer;
   transition: all 0.3s ease;
-  min-width: 150px;
+  min-width: 180px;
+  font-weight: 500;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+  background-position: right 1rem center;
+  background-repeat: no-repeat;
+  background-size: 1rem;
+  padding-right: 3rem;
 }
 
 .sort-select:focus {
   outline: none;
   border-color: #667eea;
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.15);
+  background: white;
+  transform: translateY(-1px);
+}
+
+.sort-select:hover {
+  border-color: #cbd5e1;
   background: white;
 }
 
@@ -463,21 +544,45 @@
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
   border: none;
-  width: 45px;
-  height: 45px;
-  border-radius: 12px;
+  padding: 1rem 1.5rem;
+  border-radius: 15px;
   cursor: pointer;
-  font-size: 1.2rem;
-  font-weight: bold;
+  font-size: 0.95rem;
+  font-weight: 600;
   transition: all 0.3s ease;
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 0.5rem;
+  min-width: 80px;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
 }
 
 .sort-order-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+  background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
+}
+
+.sort-order-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.sort-order-icon {
+  font-size: 1.1rem;
+  transition: transform 0.2s ease;
+}
+
+.sort-order-text {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Animation for sort order changes */
+.sort-order-btn:hover .sort-order-icon {
+  transform: scale(1.1);
 }
 
 .search-info {
@@ -486,11 +591,12 @@
   font-style: italic;
 }
 
-/* Responsive Design for Controls */
+/* Enhanced Responsive Design for Controls */
 @media (max-width: 768px) {
   .controls-section {
     flex-direction: column;
-    gap: 1rem;
+    gap: 1.5rem;
+    padding: 1.5rem;
   }
   
   .search-container {
@@ -500,5 +606,49 @@
   .sort-controls {
     width: 100%;
     justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  
+  .sort-label {
+    order: 1;
+    flex-basis: 100%;
+    justify-content: center;
+  }
+  
+  .sort-dropdown-container {
+    order: 2;
+    flex: 1;
+    min-width: 0;
+  }
+  
+  .sort-select {
+    width: 100%;
+    min-width: unset;
+  }
+  
+  .sort-order-btn {
+    order: 3;
+    flex-shrink: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .sort-controls {
+    gap: 0.75rem;
+  }
+  
+  .sort-order-btn {
+    padding: 0.75rem 1rem;
+    min-width: 70px;
+  }
+  
+  .sort-order-text {
+    display: none;
+  }
+  
+  .sort-select {
+    font-size: 0.9rem;
+    padding: 0.875rem 2.5rem 0.875rem 2.25rem;
   }
 }
