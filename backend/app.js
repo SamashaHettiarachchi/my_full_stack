@@ -2,6 +2,9 @@ const express = require("express");
 const mongoose = require("mongoose");
 const userRoutes = require("./Routes/UserRouter"); // 👈 match folder casing
 
+// Load environment variables
+require('dotenv').config();
+
 const app = express();
 const PORT = process.env.PORT || 5000;
 const cors = require("cors");
@@ -9,7 +12,7 @@ const cors = require("cors");
 // Middleware
 app.use(express.json());
 
-// Flexible CORS configuration for development
+// Flexible CORS configuration for development and production
 const corsOptions = {
   origin: function (origin, callback) {
     // Allow requests with no origin (like mobile apps, Postman, etc.)
@@ -23,15 +26,19 @@ const corsOptions = {
       return callback(null, true);
     }
 
-    // For production, you can add specific domains here
+    // Production and development allowed origins
     const allowedOrigins = [
       "http://localhost:3000",
-      "http://localhost:3001",
+      "http://localhost:3001", 
       "http://localhost:3003",
       "http://127.0.0.1:3000",
       "http://127.0.0.1:3001",
       "http://127.0.0.1:3003",
-    ];
+      // Add your production frontend URL here after deployment
+      process.env.FRONTEND_URL,
+      // Common Render.com pattern (update with your actual URL)
+      "https://your-frontend-app.onrender.com"
+    ].filter(Boolean); // Remove undefined values
 
     if (allowedOrigins.includes(origin)) {
       return callback(null, true);
@@ -64,8 +71,8 @@ app.get("/", (req, res) => {
 // MongoDB connection + server start
 mongoose
   .connect(
-    "mongodb+srv://admin:rxWab3GNPAvW8Rkh@cluster0.qip755s.mongodb.net/myAppDatabase"
-  ) // 👈 add DB name
+    process.env.MONGODB_URI || "mongodb+srv://admin:rxWab3GNPAvW8Rkh@cluster0.qip755s.mongodb.net/myAppDatabase"
+  )
   .then(() => {
     console.log("Connected to MongoDB");
     app.listen(PORT, () => {
