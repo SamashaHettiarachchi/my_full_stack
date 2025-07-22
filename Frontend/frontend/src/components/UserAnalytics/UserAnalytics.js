@@ -315,41 +315,18 @@ const UserAnalytics = () => {
           Recent Users
         </h3>
         {analytics.recentUsers.length > 0 ? (
-          <div className="recent-users-grid">
-            {analytics.recentUsers.map((user) => (
-              <div key={user.id} className="user-card">
-                <div className="user-avatar">
-                  {user.avatar ? (
-                    <img src={user.avatar} alt={user.name} />
-                  ) : (
-                    <span className="avatar-initials">
-                      {user.name
-                        .split(" ")
-                        .map((n) => n[0])
-                        .join("")
-                        .toUpperCase()}
-                    </span>
-                  )}
+          <div className="recent-users-list">
+            {analytics.recentUsers.map((user, index) => (
+              <div key={user.id} className="recent-user-item">
+                <div className="user-avatar-small">
+                  {user.name
+                    .split(" ")
+                    .map((n) => n[0])
+                    .join("")
+                    .toUpperCase()}
                 </div>
-                <div className="user-info">
-                  <h4>{user.name}</h4>
-                  <p>{user.email}</p>
-                  <span className="join-date">
-                    <FontAwesomeIcon icon={faCalendar} className="date-icon" />
-                    Joined {formatDate(user.joinDate)}
-                  </span>
-                </div>
-                <div className="user-actions">
-                  <Link
-                    to={`/edit-user/${user.id}`}
-                    className="user-action edit"
-                  >
-                    <FontAwesomeIcon icon={faEdit} />
-                  </Link>
-                  <Link to={`/user/${user.id}`} className="user-action view">
-                    <FontAwesomeIcon icon={faEye} />
-                  </Link>
-                </div>
+                <span className="user-name">{user.name}</span>
+                <span className="join-badge">New</span>
               </div>
             ))}
           </div>

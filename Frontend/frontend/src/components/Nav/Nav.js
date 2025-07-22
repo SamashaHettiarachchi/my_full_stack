@@ -120,9 +120,18 @@ function Nav() {
                   className="user-avatar"
                   onClick={() => setShowUserDropdown(!showUserDropdown)}
                 >
-                  <FontAwesomeIcon icon={faUser} className="avatar-icon" />
+                  <div className="avatar-circle">
+                    {user.firstName 
+                      ? user.firstName.charAt(0).toUpperCase()
+                      : user.username 
+                        ? user.username.charAt(0).toUpperCase()
+                        : user.name
+                          ? user.name.charAt(0).toUpperCase()
+                          : "U"
+                    }
+                  </div>
                   <span className="user-name">
-                    {user.firstName || user.username}
+                    {user.firstName || user.username || user.name}
                   </span>
                   <FontAwesomeIcon
                     icon={faCaretDown}

@@ -19,15 +19,41 @@ import "./UserDetails.css";
 // API Configuration
 const API_URL = process.env.REACT_APP_API_URL || "https://myfullstack-production.up.railway.app";
 
-function UserDetails() {
+const UserDetails = () => {
   const [users, setUsers] = useState([]);
+  const [filteredUsers, setFilteredUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [sortBy, setSortBy] = useState("name");
+  const [sortOrder, setSortOrder] = useState("asc");
   const navigate = useNavigate();
 
   useEffect(() => {
     fetchUsers();
   }, []);
+
+  // Filter and sort users when users, searchTerm, or sort options change
+  useEffect(() => {
+    let filtered = users.filter(user =>
+      user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      user.email.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
+    // Sort users
+    filtered.sort((a, b) => {
+      let aVal = sortBy === 'age' ? parseInt(a[sortBy]) : a[sortBy].toLowerCase();
+      let bVal = sortBy === 'age' ? parseInt(b[sortBy]) : b[sortBy].toLowerCase();
+      
+      if (sortOrder === 'asc') {
+        return aVal > bVal ? 1 : -1;
+      } else {
+        return aVal < bVal ? 1 : -1;
+      }
+    });
+
+    setFilteredUsers(filtered);
+  }, [users, searchTerm, sortBy, sortOrder]);
 
   const fetchUsers = async () => {
     try {
@@ -131,6 +157,37 @@ function UserDetails() {
         </button>
       </div>
 
+      {/* Search and Filter Controls */}
+      <div className="controls-section">
+        <div className="search-container">
+          <FontAwesomeIcon icon={faSearch} className="search-icon" />
+          <input
+            type="text"
+            placeholder="Search by name or email..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="search-input"
+          />
+        </div>
+        <div className="sort-controls">
+          <select
+            value={sortBy}
+            onChange={(e) => setSortBy(e.target.value)}
+            className="sort-select"
+          >
+            <option value="name">Sort by Name</option>
+            <option value="age">Sort by Age</option>
+            <option value="email">Sort by Email</option>
+          </select>
+          <button
+            onClick={() => setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc')}
+            className="sort-order-btn"
+          >
+            {sortOrder === 'asc' ? '↑' : '↓'}
+          </button>
+        </div>
+      </div>
+
       {users.length === 0 ? (
         <div className="no-users">
           <FontAwesomeIcon icon={faUser} className="no-users-icon" />
@@ -146,11 +203,14 @@ function UserDetails() {
           <div className="users-stats">
             <p>
               <FontAwesomeIcon icon={faUsers} className="stats-icon" />
-              Total Users: <strong>{users.length}</strong>
+              Total Users: <strong>{filteredUsers.length}</strong>
+              {searchTerm && (
+                <span className="search-info"> (filtered from {users.length})</span>
+              )}
             </p>
           </div>
           <div className="users-grid">
-            {users.map((user) => (
+            {filteredUsers.map((user) => (
               <div key={user._id} className="user-card">
                 <div className="user-info">
                   <h3>
@@ -190,9 +250,6 @@ function UserDetails() {
                       />
                     </div>
                   )}
-                  <div className="user-meta">
-                    <small>ID: {user._id}</small>
-                  </div>
                 </div>
                 <div className="user-actions">
                   <button
