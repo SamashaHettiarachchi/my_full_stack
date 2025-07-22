@@ -24,7 +24,9 @@ import {
 import "./UserAnalytics.css";
 
 // API Configuration
-const API_URL = process.env.REACT_APP_API_URL || "https://myfullstack-production.up.railway.app";
+const API_URL =
+  process.env.REACT_APP_API_URL ||
+  "https://myfullstack-production.up.railway.app";
 
 const UserAnalytics = () => {
   const [analytics, setAnalytics] = useState({
@@ -48,15 +50,12 @@ const UserAnalytics = () => {
 
       try {
         // Fetch analytics data from dedicated endpoint
-        const response = await fetch(
-          `${API_URL}/users/analytics/overview`,
-          {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        );
+        const response = await fetch(`${API_URL}/users/analytics/overview`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
 
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
@@ -76,7 +75,11 @@ const UserAnalytics = () => {
           userGrowthData: processGrowthData(data.dailyRegistrations),
           recentUsers: data.recentUsers.map((user) => ({
             id: user._id,
-            name: user.name || user.firstName + " " + user.lastName || user.username || "Unknown User",
+            name:
+              user.name ||
+              user.firstName + " " + user.lastName ||
+              user.username ||
+              "Unknown User",
             email: user.email,
             joinDate: user.createdAt || user._id,
             avatar: user.profilePicture || null,

@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const userRoutes = require("./Routes/UserRouter"); // 👈 match folder casing
 
 // Load environment variables
-require('dotenv').config();
+require("dotenv").config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -29,7 +29,7 @@ const corsOptions = {
     // Production and development allowed origins
     const allowedOrigins = [
       "http://localhost:3000",
-      "http://localhost:3001", 
+      "http://localhost:3001",
       "http://localhost:3003",
       "http://127.0.0.1:3000",
       "http://127.0.0.1:3001",
@@ -43,7 +43,7 @@ const corsOptions = {
       // Common frontend deployment patterns
       "https://your-frontend-app.netlify.app",
       "https://your-frontend-app.vercel.app",
-      "https://your-frontend-app.railway.app"
+      "https://your-frontend-app.railway.app",
     ].filter(Boolean); // Remove undefined values
 
     if (allowedOrigins.includes(origin)) {
@@ -77,7 +77,8 @@ app.get("/", (req, res) => {
 // MongoDB connection + server start
 mongoose
   .connect(
-    process.env.MONGODB_URI || "mongodb+srv://admin:rxWab3GNPAvW8Rkh@cluster0.qip755s.mongodb.net/myAppDatabase"
+    process.env.MONGODB_URI ||
+      "mongodb+srv://admin:rxWab3GNPAvW8Rkh@cluster0.qip755s.mongodb.net/myAppDatabase"
   )
   .then(() => {
     console.log("Connected to MongoDB");

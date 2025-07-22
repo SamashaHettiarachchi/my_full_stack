@@ -392,7 +392,11 @@
   align-items: center;
   margin-bottom: 2rem;
   padding: 2rem;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.9) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(255, 255, 255, 0.9) 100%
+  );
   backdrop-filter: blur(10px);
   border-radius: 20px;
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
@@ -598,35 +602,35 @@
     gap: 1.5rem;
     padding: 1.5rem;
   }
-  
+
   .search-container {
     max-width: 100%;
   }
-  
+
   .sort-controls {
     width: 100%;
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 1rem;
   }
-  
+
   .sort-label {
     order: 1;
     flex-basis: 100%;
     justify-content: center;
   }
-  
+
   .sort-dropdown-container {
     order: 2;
     flex: 1;
     min-width: 0;
   }
-  
+
   .sort-select {
     width: 100%;
     min-width: unset;
   }
-  
+
   .sort-order-btn {
     order: 3;
     flex-shrink: 0;
@@ -637,16 +641,16 @@
   .sort-controls {
     gap: 0.75rem;
   }
-  
+
   .sort-order-btn {
     padding: 0.75rem 1rem;
     min-width: 70px;
   }
-  
+
   .sort-order-text {
     display: none;
   }
-  
+
   .sort-select {
     font-size: 0.9rem;
     padding: 0.875rem 2.5rem 0.875rem 2.25rem;

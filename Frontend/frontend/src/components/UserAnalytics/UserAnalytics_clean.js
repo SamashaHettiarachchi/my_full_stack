@@ -73,7 +73,11 @@ const UserAnalytics = () => {
           userGrowthData: processGrowthData(data.dailyRegistrations),
           recentUsers: data.recentUsers.map((user) => ({
             id: user._id,
-            name: user.name || user.firstName + " " + user.lastName || user.username || "Unknown User",
+            name:
+              user.name ||
+              user.firstName + " " + user.lastName ||
+              user.username ||
+              "Unknown User",
             email: user.email,
             joinDate: user.createdAt || user._id,
             avatar: user.profilePicture || null,

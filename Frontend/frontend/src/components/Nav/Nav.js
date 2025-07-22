@@ -121,14 +121,13 @@ function Nav() {
                   onClick={() => setShowUserDropdown(!showUserDropdown)}
                 >
                   <div className="avatar-circle">
-                    {user.firstName 
+                    {user.firstName
                       ? user.firstName.charAt(0).toUpperCase()
-                      : user.username 
-                        ? user.username.charAt(0).toUpperCase()
-                        : user.name
-                          ? user.name.charAt(0).toUpperCase()
-                          : "U"
-                    }
+                      : user.username
+                      ? user.username.charAt(0).toUpperCase()
+                      : user.name
+                      ? user.name.charAt(0).toUpperCase()
+                      : "U"}
                   </div>
                   <span className="user-name">
                     {user.firstName || user.username || user.name}

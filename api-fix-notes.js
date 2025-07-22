@@ -2,12 +2,12 @@
 
 // List of files that need to be updated:
 const filesToUpdate = [
-  'Frontend/frontend/src/components/UserAnalytics/UserAnalytics.js',
-  'Frontend/frontend/src/components/UserAnalytics/UserAnalytics_clean.js', 
-  'Frontend/frontend/src/components/AddUser/AddUser.js',
-  'Frontend/frontend/src/components/UserDetails/UserDetais.js',
-  'Frontend/frontend/src/components/Profile/Profile.js',
-  'Frontend/frontend/src/components/EditUser/EditUser_enhanced.js'
+  "Frontend/frontend/src/components/UserAnalytics/UserAnalytics.js",
+  "Frontend/frontend/src/components/UserAnalytics/UserAnalytics_clean.js",
+  "Frontend/frontend/src/components/AddUser/AddUser.js",
+  "Frontend/frontend/src/components/UserDetails/UserDetais.js",
+  "Frontend/frontend/src/components/Profile/Profile.js",
+  "Frontend/frontend/src/components/EditUser/EditUser_enhanced.js",
 ];
 
 // Replacements needed:

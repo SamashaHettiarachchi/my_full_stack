@@ -23,7 +23,9 @@ import {
 import "./UserDetails.css";
 
 // API Configuration
-const API_URL = process.env.REACT_APP_API_URL || "https://myfullstack-production.up.railway.app";
+const API_URL =
+  process.env.REACT_APP_API_URL ||
+  "https://myfullstack-production.up.railway.app";
 
 const UserDetails = () => {
   const [users, setUsers] = useState([]);
@@ -41,30 +43,32 @@ const UserDetails = () => {
 
   // Filter and sort users when users, searchTerm, or sort options change
   useEffect(() => {
-    let filtered = users.filter(user =>
-      user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      user.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      (user.address && user.address.toLowerCase().includes(searchTerm.toLowerCase()))
+    let filtered = users.filter(
+      (user) =>
+        user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        user.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        (user.address &&
+          user.address.toLowerCase().includes(searchTerm.toLowerCase()))
     );
 
     // Enhanced sorting logic
     filtered.sort((a, b) => {
       let aVal, bVal;
-      
-      if (sortBy === 'age') {
+
+      if (sortBy === "age") {
         aVal = parseInt(a[sortBy]) || 0;
         bVal = parseInt(b[sortBy]) || 0;
-      } else if (sortBy === 'createdAt') {
+      } else if (sortBy === "createdAt") {
         // Use MongoDB ObjectId creation time or actual createdAt field
         aVal = new Date(a.createdAt || a._id);
         bVal = new Date(b.createdAt || b._id);
       } else {
         // String comparison for name, email, address
-        aVal = (a[sortBy] || '').toLowerCase();
-        bVal = (b[sortBy] || '').toLowerCase();
+        aVal = (a[sortBy] || "").toLowerCase();
+        bVal = (b[sortBy] || "").toLowerCase();
       }
-      
-      if (sortOrder === 'asc') {
+
+      if (sortOrder === "asc") {
         return aVal > bVal ? 1 : -1;
       } else {
         return aVal < bVal ? 1 : -1;
@@ -197,13 +201,13 @@ const UserDetails = () => {
             </button>
           )}
         </div>
-        
+
         <div className="sort-controls">
           <div className="sort-label">
             <FontAwesomeIcon icon={faFilter} className="sort-label-icon" />
             <span>Sort by:</span>
           </div>
-          
+
           <div className="sort-dropdown-container">
             <FontAwesomeIcon icon={faSort} className="sort-dropdown-icon" />
             <select
@@ -211,35 +215,27 @@ const UserDetails = () => {
               onChange={(e) => setSortBy(e.target.value)}
               className="sort-select"
             >
-              <option value="name">
-                👤 Name (A-Z)
-              </option>
-              <option value="age">
-                🎂 Age
-              </option>
-              <option value="email">
-                📧 Email
-              </option>
-              <option value="address">
-                📍 Address
-              </option>
-              <option value="createdAt">
-                📅 Date Added
-              </option>
+              <option value="name">👤 Name (A-Z)</option>
+              <option value="age">🎂 Age</option>
+              <option value="email">📧 Email</option>
+              <option value="address">📍 Address</option>
+              <option value="createdAt">📅 Date Added</option>
             </select>
           </div>
-          
+
           <button
-            onClick={() => setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc')}
+            onClick={() => setSortOrder(sortOrder === "asc" ? "desc" : "asc")}
             className="sort-order-btn"
-            title={`Currently sorting ${sortOrder === 'asc' ? 'ascending' : 'descending'} - Click to ${sortOrder === 'asc' ? 'descend' : 'ascend'}`}
+            title={`Currently sorting ${
+              sortOrder === "asc" ? "ascending" : "descending"
+            } - Click to ${sortOrder === "asc" ? "descend" : "ascend"}`}
           >
-            <FontAwesomeIcon 
-              icon={sortOrder === 'asc' ? faSortUp : faSortDown}
+            <FontAwesomeIcon
+              icon={sortOrder === "asc" ? faSortUp : faSortDown}
               className="sort-order-icon"
             />
             <span className="sort-order-text">
-              {sortOrder === 'asc' ? 'Asc' : 'Desc'}
+              {sortOrder === "asc" ? "Asc" : "Desc"}
             </span>
           </button>
         </div>
@@ -262,7 +258,10 @@ const UserDetails = () => {
               <FontAwesomeIcon icon={faUsers} className="stats-icon" />
               Total Users: <strong>{filteredUsers.length}</strong>
               {searchTerm && (
-                <span className="search-info"> (filtered from {users.length})</span>
+                <span className="search-info">
+                  {" "}
+                  (filtered from {users.length})
+                </span>
               )}
             </p>
           </div>
@@ -331,6 +330,6 @@ const UserDetails = () => {
       )}
     </div>
   );
-}
+};
 
 export default UserDetails;

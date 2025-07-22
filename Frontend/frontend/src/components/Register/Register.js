@@ -171,19 +171,22 @@ const Register = () => {
     setLoading(true);
 
     try {
-      const response = await fetch(config.getApiUrl(config.endpoints.register), {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          firstName: formData.firstName,
-          lastName: formData.lastName,
-          username: formData.username,
-          email: formData.email,
-          password: formData.password,
-        }),
-      });
+      const response = await fetch(
+        config.getApiUrl(config.endpoints.register),
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            firstName: formData.firstName,
+            lastName: formData.lastName,
+            username: formData.username,
+            email: formData.email,
+            password: formData.password,
+          }),
+        }
+      );
 
       const data = await response.json();
 
@@ -505,13 +508,8 @@ const Register = () => {
                 Sign in here
               </Link>
             </p>
-            <div className="divider">
-              
-            </div>
-            <div className="social-buttons">
-              
-              
-            </div>
+            <div className="divider"></div>
+            <div className="social-buttons"></div>
           </div>
         </div>
       </div>

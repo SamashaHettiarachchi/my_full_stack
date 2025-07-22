@@ -278,13 +278,8 @@ const Login = () => {
                 Create one here
               </Link>
             </p>
-            <div className="divider">
-             
-            </div>
-            <div className="social-buttons">
-              
-              
-            </div>
+            <div className="divider"></div>
+            <div className="social-buttons"></div>
           </div>
         </div>
       </div>
